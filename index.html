@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carousel Slider</title>
+    <link rel="js" href="/main.js">
+    <link rel="stylesheet" href="/style.css">
+ </head>
+<body>
+    <div class="container">
+        <div class="main-img">
+            <video id="current" width="400" controls autoplay>
+                <source src="10 Morning Routine Habits of Successful People.mp4" poster="https://preview.ibb.co/gxVppG/img1.jpg"  type="video/mp4"> 
+            </video>  
+            <div class="main-img-content">
+              <h3 id="title">10 Morning Routine Habits of Successful People</h3>
+              <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+              <button class="button">Learn more</button>
+            </div>
+        </div>
+      
+        <div class="imgs">  
+          <video width="400" src="10 Morning Routine Habits of Successful People.mp4" poster="https://preview.ibb.co/gxVppG/img1.jpg" title="10 Morning Routine Habits of Successful People" type="video/mp4"> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
+          </video> 
+          <video width="400" src="How genetics and environment work together to shape our destiny Milena Georgieva at TEDxAUBG.mp4" title="How genetics and environment work together to shape our destiny Milena Georgieva at TEDxAUBG"  poster="https://preview.ibb.co/bSWjOb/img7.jpg" type="video/mp4">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
+          </video> 
+          <video width="400" src="How To Learn Faster.mp4" poster="https://preview.ibb.co/iQsPOb/img3.jpg" title="How To Learn Faster" type="video/mp4"> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
+          </video> 
+          <video width="400" src="10 Morning Routine Habits of Successful People.mp4"  poster="https://preview.ibb.co/hS5ppG/img5.jpg"  title="10 Morning Routine Habits of Successful People" type="video/mp4"> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
+          </video> 
+        </div>
+      </div>
+      <script>
+      
+      const current = document.querySelector("#current"); 
+      const imgTitle = document.querySelector("#title");
+      const imgContent = document.querySelector("#content");
+    const imgs = document.querySelectorAll(".imgs video");
+    const opacity = 0.4;
+    
+    // Set first img opacity
+    imgs[0].style.opacity = opacity;
+    
+    imgs.forEach(img => img.addEventListener("click", imgClick));
+    
+    function imgClick(e) {
+      // Reset the opacity
+      imgs.forEach(img => (img.style.opacity = 1));
+    
+      // Change current image to src of clicked image
+      current.src = e.target.src; 
+      imgTitle.innerHTML = e.target.title;  
+      imgContent.innerHTML = e.target.textContent;
+      
+      
+      
+    
+      // Add fade in class
+      current.classList.add("fade-in");
+    
+      // Remove fade-in class after .5 seconds
+      setTimeout(() => current.classList.remove("fade-in"), 500);
+    
+      // Change the opacity to opacity var
+      e.target.style.opacity = opacity;
+    }
+    
+    console.log("hello");
+      </script>
+    <!-- <div class="container">
+    
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                <video width="400" controls>
+                            <source src="10 Morning Routine Habits of Successful People.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1">
+                <video width="400" controls>
+                            <source src="How genetics and environment work together to shape our destiny Milena Georgieva at TEDxAUBG.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2">
+                    <video width="400" controls>
+                            <source src="How To Learn Faster.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                    <video class="mainVideo" width="400" controls>
+                            <source src="10 Morning Routine Habits of Successful People.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </div>
+              <div class="carousel-item">
+                    <video class="mainVideo" width="400" controls>
+                            <source src="How genetics and environment work together to shape our destiny Milena Georgieva at TEDxAUBG.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </div>
+              <div class="carousel-item">
+                    <video class="mainVideo" width="400" controls>
+                            <source src="How To Learn Faster.mp4" type="video/mp4"> 
+                            Your browser does not support HTML5 video.
+                    </video>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script>
+        $('.carousel').carousel({
+            ride:
+            })
+    </script> -->
+</body>
+</html>
