@@ -9,7 +9,7 @@ body {
   
   .container {
     position: relative;
-    max-width: 900px;
+    max-width: 998px;
     margin: auto;
     border: rgb(71, 69, 69) solid 3px;
     border-radius: 5px;
@@ -40,6 +40,9 @@ body {
       padding: 10px;
   }
   
+  .imgs video:hover {
+    opacity: 0.4 !important;
+}
   /* Fade in animation */
   @keyframes fadeIn {
     to {
@@ -100,4 +103,14 @@ body {
   right: 0;
   margin-right: -44px;
 }
-  
+
+@media only screen and (max-width: 750px) {
+  .main-img-content {
+      display: none;
+  }
+
+  .main-img {
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
