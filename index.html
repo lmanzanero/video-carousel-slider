@@ -10,8 +10,9 @@
  </head>
 <body>
     <div class="container">
+        <div id="arrow-left" class="arrow"></div>
         <div class="main-img">
-            <video id="current" width="400" controls autoplay>
+            <video id="current" width="400" controls>
                 <source src="How To Learn Faster.mp4" poster="https://preview.ibb.co/gxVppG/img1.jpg"  type="video/mp4"> 
             </video>  
             <div class="main-img-content">
@@ -31,21 +32,55 @@
           <video width="400" src="How To Learn Faster.mp4" poster="https://preview.ibb.co/iQsPOb/img3.jpg" title="How To Learn Faster" type="video/mp4"> 
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
           </video> 
-          <video width="400" src="How To Learn Faster.mp4"  poster="https://preview.ibb.co/hS5ppG/img5.jpg"  title="10 Morning Routine Habits of Successful People" type="video/mp4"> 
+          <video width="400" src="How To Learn Faster.mp4"  poster="https://preview.ibb.co/hS5ppG/img5.jpg"  title="This is a random Video" type="video/mp4"> 
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
           </video> 
         </div>
-      </div>
+        <div id="arrow-right" class="arrow"></div>
+      </div> 
       <script>
       
       const current = document.querySelector("#current"); 
       const imgTitle = document.querySelector("#title");
       const imgContent = document.querySelector("#content");
-    const imgs = document.querySelectorAll(".imgs video");
-    const opacity = 0.4;
+      const leftButton = document.querySelector('#arrow-left');
+      const rightButton = document.querySelector('#arrow-right');
+      const imgs = document.querySelectorAll(".imgs video");
+      const opacity = 0.4;
     
     // Set first img opacity
     imgs[0].style.opacity = opacity;
+    let currentImg = 0;
+
+    function leftArrow(){
+      if(currentImg === 0){
+        currentImg = imgs.length;  
+      }
+      current.src = imgs[currentImg - 1].src;
+      imgTitle.innerHTML = imgs[currentImg - 1].title; 
+      imgContent.innerHTML = imgs[currentImg - 1].textContent; 
+      imgs.forEach(img => (img.style.opacity = 1));
+      imgs[currentImg - 1 ].style.opacity = opacity; 
+      current.classList.add("fade-in");
+      
+    currentImg --;
+    }
+
+    function rightArrow(){ 
+      if(currentImg === imgs.length - 1){
+         currentImg = - 1; 
+      }
+    current.src = imgs[currentImg + 1].src;
+    imgTitle.innerHTML = imgs[currentImg + 1].title; 
+    imgContent.innerHTML = imgs[currentImg + 1].textContent; 
+    imgs.forEach(img => (img.style.opacity = 1));
+    imgs[currentImg + 1 ].style.opacity = opacity; 
+    current.classList.add("fade-in");
+    currentImg ++;
+    }
+     
+    leftButton.addEventListener('click', leftArrow);
+    rightButton.addEventListener('click', rightArrow);
     
     imgs.forEach(img => img.addEventListener("click", imgClick));
     
@@ -65,7 +100,7 @@
       current.classList.add("fade-in");
     
       // Remove fade-in class after .5 seconds
-      setTimeout(() => current.classList.remove("fade-in"), 500);
+      setTimeout(() => current.classList.remove("fade-in"), 800);
     
       // Change the opacity to opacity var
       e.target.style.opacity = opacity;
