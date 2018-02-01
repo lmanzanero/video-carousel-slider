@@ -11,32 +11,35 @@
 <body>
     <div class="container">
         <div id="arrow-left" class="arrow"></div>
+        <!-- <div id="carousel-arrow-left" class="carousel-arrow"></div> -->
         <div class="main-img">
-            <video id="current" width="400" controls>
-                <source src="How To Learn Faster.mp4" poster="https://preview.ibb.co/gxVppG/img1.jpg"  type="video/mp4"> 
-            </video>  
+          <iframe id="current" src="https://player.vimeo.com/video/251587788" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div class="main-img-content">
-              <h3 id="title">10 Morning Routine Habits of Successful People</h3>
-              <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+                <h3 id="title">Hummingbird Arial Video Teaser</h3>
+                <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
               <button class="button">Learn more</button>
             </div>
         </div>
       
-        <div class="imgs">  
-          <video width="400" src="How To Learn Faster.mp4" poster="https://preview.ibb.co/gxVppG/img1.jpg" title="10 Morning Routine Habits of Successful People" type="video/mp4"> 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
-          </video> 
-          <video width="400" src="How To Learn Faster.mp4" title="How genetics and environment work together to shape our destiny Milena Georgieva at TEDxAUBG"  poster="https://preview.ibb.co/bSWjOb/img7.jpg" type="video/mp4">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
-          </video> 
-          <video width="400" src="How To Learn Faster.mp4" poster="https://preview.ibb.co/iQsPOb/img3.jpg" title="How To Learn Faster" type="video/mp4"> 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
-          </video> 
-          <video width="400" src="How To Learn Faster.mp4"  poster="https://preview.ibb.co/hS5ppG/img5.jpg"  title="This is a random Video" type="video/mp4"> 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tenetur at ipsa nam culpa natus, neque voluptas. Explicabo deserunt alias, voluptatum, earum vero tempore officiis autem debitis itaque totam odio?</p>
-          </video> 
+        <div class="imgs" id="imgs-container"> 
+          <iframe src="https://player.vimeo.com/video/251587788" title="Hummingbird Arial Video Teaser" width="400" height="110" frameborder="0">
+            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+          </iframe>
+          <iframe src="https://player.vimeo.com/video/229508770" title="Vaca Lake Tour - BucketList Belize" width="400" height="110" frameborder="0">
+            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+          </iframe>
+          <iframe src="https://www.youtube.com/embed/C5ITJ_nIFgQ?modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" title="Design Recline's Online Permaculture Design Course" width="400" height="110" frameborder="0">
+            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+          </iframe>
+          <iframe src="https://www.youtube.com/embed/Xbd9OLgT_uQ?modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" title="Permaculture Made Easy - Brilliant Banana Circles" width="400" height="110" frameborder="0">
+            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+          </iframe>
+          <iframe src="https://www.youtube.com/embed/qikO1_N-aWs?modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" imgUrl="https://img.youtube.com/vi/qikO1_N-aWs/0.jpg" title="Dynamo Comfrey- Permaculture Made Easy" width="400" height="110" frameborder="0">
+            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
+          </iframe> 
         </div>
         <div id="arrow-right" class="arrow"></div>
+        <!-- <div id="carousel-arrow-right" class="carousel-arrow"></div> -->
       </div> 
       <script>
       
@@ -45,11 +48,15 @@
       const imgContent = document.querySelector("#content");
       const leftButton = document.querySelector('#arrow-left');
       const rightButton = document.querySelector('#arrow-right');
-      const imgs = document.querySelectorAll(".imgs video");
+      const scrollLeftArrow = document.querySelector('#carousel-arrow-left');
+      const scrollRightArrow = document.querySelector('#carousel-arrow-right');
+      const imgs = document.querySelectorAll(".imgs iframe");
       const opacity = 0.4;
+      console.log(imgs);
     
     // Set first img opacity
-    imgs[0].style.opacity = opacity;
+    imgs[0].style.opacity = opacity; 
+    
     let currentImg = 0;
 
     function leftArrow(){
@@ -105,6 +112,18 @@
       // Change the opacity to opacity var
       e.target.style.opacity = opacity;
     }
+     
+
+    // function scrollRight() {
+    //   document.getElementById("imgs-container").scrollLeft += 100;
+    //  }
+
+    // function scrollLeft() {
+    //   document.getElementById("imgs-container").scrollLeft -= 100;
+    //  }
+
+    // scrollLeftArrow.addEventListener('click', scrollLeft);
+    // scrollRightArrow.addEventListener('click', scrollRight);
      
       </script> 
 </body>
