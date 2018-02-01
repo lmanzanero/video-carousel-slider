@@ -15,7 +15,7 @@ body {
     border-radius: 5px;
     background:#252525;
   }
-
+ 
   .main-img {
       display: grid;
       grid-template-columns: auto 300px;
@@ -25,10 +25,12 @@ body {
       padding: 10px;
   }
   
-  .main-img iframe,
-  .imgs iframe {
-    width: 100%;
+  .main-img frame,
+  .imgs video {
+    width: 100%;  
   }
+
+ 
   
   .imgs { 
     position: relative;
@@ -56,16 +58,19 @@ body {
       background-color: #555;
   }
   
+  
+  
 
-  .imgs iframe {
+  .imgs video {
     flex-grow: 1; 
     display: inline-block; 
     width: 200px;
     padding: 3px;
-  }
+  } 
   
-  .imgs iframe:hover {
-    opacity: 0.4 !important;
+  
+  .imgs video:hover {
+    opacity: 0.4 !important; 
 }
   /* Fade in animation */
   @keyframes fadeIn {
