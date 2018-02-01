@@ -14,6 +14,29 @@ body {
     margin: auto;
     background:#252525;
   }
+
+  .ytp-pause-overlay {
+    display: none !important;
+    z-index: -1 !important;
+  } 
+  .ytp-scroll-min {
+    display: none !important;
+    z-index: -1 !important;
+  }
+
+  .ytp-expand-pause-overlay{
+    display: none !important;
+    z-index: -1 !important;
+  }
+  .ytp-pause-overlay { 
+    display: none !important;
+    z-index: -1 !important;
+}
+
+.ytp-pause-overlay {
+  display: none !important;
+  z-index: -1 !important;
+}
  
   .main-img {  
       background-color: #1f1f1f;
