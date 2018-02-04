@@ -6,16 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Carousel Slider</title>
     <link rel="js" href="/main.js">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">  
  </head>
-<body>
+ 
+<body >
     <div class="container"> 
         <div id="arrow-left" class="arrow">
           <img src="imgs/002-back.png" alt="left arrow">
         </div>
         <!-- <div id="carousel-arrow-left" class="carousel-arrow"></div> -->
         <div class="main-img">
-          <iframe id="current"  src="https://player.vimeo.com/video/251587788" frameborder="0"  mozallowfullscreen allowfullscreen></iframe>
+          <iframe id="current"  src="https://player.vimeo.com/video/251587788?autoplay=1" frameborder="0"  mozallowfullscreen allowfullscreen></iframe>
             <!-- <div class="main-img-content">
                 <h3 id="title">Hummingbird Arial Video Teaser</h3>
                 <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
@@ -47,7 +48,7 @@
       </div> 
       <script>
       
-      const current = document.querySelector("#current"); 
+      const current = document.querySelector("#current");  
       // const imgTitle = document.querySelector("#title");
       // const imgContent = document.querySelector("#content");
       const leftButton = document.querySelector('#arrow-left');
@@ -55,6 +56,7 @@
       // const scrollLeftArrow = document.querySelector('#carousel-arrow-left');
       // const scrollRightArrow = document.querySelector('#carousel-arrow-right');
       const imgs = document.querySelectorAll(".imgs video");
+      const imgsContainer = document.querySelector("#imgs-container");
       const opacity = 0.4;
       console.log(imgs);
     
@@ -104,7 +106,7 @@
       // imgTitle.innerHTML = e.target.title;  
       // imgContent.innerHTML = e.target.textContent;
       
-      
+     
       
     
       // Add fade in class
@@ -116,8 +118,28 @@
       // Change the opacity to opacity var
       e.target.style.opacity = opacity;
     }
-      
+ 
+    
+    function changeVideoWidth() {
+       
+      function changeToFix() {
+        imgsContainer.style.position = "fixed";
+        function changeToRelative() {
+          imgsContainer.style.position = "relative";
+        }
+        setTimeout(changeToRelative, 5000);
+      }
+      current.addEventListener('mouseover' , changeToFix);
+      window.addEventListener('scroll', changeToFix);
+    } 
      
-      </script> 
+     
+     if(window.innerWidth > 1000){
+       changeVideoWidth();
+     }
+     
+      
+      </script>  
+    
 </body>
 </html>
