@@ -149,11 +149,11 @@
      }
 }
     function checkOrientation(){
-      if(window.screen.orientation === "portrait-primary"){
-        turnDeviceNotification.style.display = "none";
-      } else {
+      if(window.screen.orientation.type === "portrait-primary"){
         turnDeviceNotification.style.display = "block";
-        turnDeviceNotification.style.zIndex = "3";  
+        turnDeviceNotification.style.zIndex = "3"; 
+      } else {
+        turnDeviceNotification.style.display = "none"; 
       }
     }
      
