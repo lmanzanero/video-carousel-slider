@@ -10,8 +10,14 @@
  </head>
  
 <body >
+    <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
     <div class="container"> 
-        <div class="turnDeviceNotification"></div>
+        
         <div id="arrow-left" class="arrow">
           <img src="imgs/002-back.png" alt="left arrow">
         </div>
@@ -47,9 +53,19 @@
         </div>
         <!-- <div id="carousel-arrow-right" class="carousel-arrow"></div> -->
       </div> 
+      <div class="body" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px; z-index: 1;">
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h2>Heading 3</h2>
+          
+          <p>Some text some text some text some text..</p>
+     
+          </div>
+          
       <script>
       
       const current = document.querySelector("#current");  
+      const videoContainer = document.querySelector('.container');
       // const imgTitle = document.querySelector("#title");
       // const imgContent = document.querySelector("#content");
       const leftButton = document.querySelector('#arrow-left');
@@ -59,6 +75,7 @@
       const imgs = document.querySelectorAll(".imgs video");
       const imgsContainer = document.querySelector("#imgs-container");
       const turnDeviceNotification = document.querySelector('.turnDeviceNotification');
+      const mainBody = document.querySelector('.body');
       const opacity = 0.4;
       console.log(imgs);
     
@@ -119,27 +136,7 @@
     
       // Change the opacity to opacity var
       e.target.style.opacity = opacity;
-    }
- 
-    
-    function changeVideoWidth() {
-       
-      function changeToFix() {
-        imgsContainer.style.position = "fixed";
-        function changeToRelative() {
-          imgsContainer.style.position = "relative";
-        }
-        setTimeout(changeToRelative, 5000);
-      }
-      current.addEventListener('mouseover' , changeToFix);
-      window.addEventListener('scroll', changeToFix);
-      window.addEventListener('mousemove', changeToFix);
     } 
-     
-     
-     if(window.innerWidth > 1000){
-       changeVideoWidth();
-     } 
      
       console.log(window.screen.orientation);
       window.addEventListener("orientationchange", function() {
@@ -149,6 +146,28 @@
       turnDeviceNotification.style.zIndex = "3"; 
      }
 });
+
+  const topOfImgsContainer = imgsContainer.offsetHeight;
+  const topOfVideoContainer = videoContainer.offsetTop;
+  const topOfMainBody = mainBody.scrollHeight;
+
+    function fixedImgsContainer(){
+      if(window.scrollY <= topOfImgsContainer + 20 && window.innerHeight < window.innerWidth){
+        imgsContainer.style.position = "fixed"; 
+      } else{
+        imgsContainer.style.position = "relative";
+         
+      } 
+    }
+
+    function fixedVideoContainer(){ 
+      console.log(window.pageYOffset);
+      
+     
+    }
+
+    window.addEventListener('scroll', fixedVideoContainer);
+    window.addEventListener('scroll', fixedImgsContainer);
       
       </script>  
     
