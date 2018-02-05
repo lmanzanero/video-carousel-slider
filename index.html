@@ -137,17 +137,29 @@
       // Change the opacity to opacity var
       e.target.style.opacity = opacity;
     } 
-     
-      console.log(window.screen.orientation);
-      window.addEventListener("orientationchange", function() {
+
+
+    console.log(window.screen.orientation);
+    
+    function changeOrientation() {
      if(window.innerHeight > window.innerWidth){
       turnDeviceNotification.style.zIndex = "0";
-      turnDeviceNotification.style.display = "none";
      }else {
-      turnDeviceNotification.style.zIndex = "3"; 
-      turnDeviceNotification.style.display = "block";
+      turnDeviceNotification.style.zIndex = "3";  
      }
-});
+}
+    function checkOrientation(){
+      if(window.screen.orientation === "portrait-primary"){
+        turnDeviceNotification.style.display = "none";
+      } else {
+        turnDeviceNotification.style.display = "block";
+        turnDeviceNotification.style.zIndex = "3";  
+      }
+    }
+     
+      
+      window.addEventListener("load",  checkOrientation);
+      window.addEventListener("orientationchange",  changeOrientation);
 
   const topOfImgsContainer = imgsContainer.offsetHeight;
   const topOfVideoContainer = videoContainer.offsetTop;
@@ -163,7 +175,7 @@
     }
 
     function fixedVideoContainer(){ 
-      console.log(window.pageYOffset);
+      // console.log(window.pageYOffset);
       
      
     }
