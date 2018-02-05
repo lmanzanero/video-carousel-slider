@@ -163,4 +163,7 @@ img {
 .turnDeviceNotification {
   background-image:url('imgs/turn-device.png');
   background-size:cover;
+  background-position: center; 
+  background-repeat: no-repeat;
 }
+ 
