@@ -137,9 +137,9 @@
     } 
      
      
-    //  if(window.innerWidth > 1000){
-    //    changeVideoWidth();
-    //  }
+     if(window.innerWidth > 1000){
+       changeVideoWidth();
+     }
 
     //  if(window.innerHeight > window.innerWidth){
     //   turnDeviceNotification.style.zIndex = "3"; 
@@ -149,7 +149,11 @@
      
       console.log(window.screen.orientation);
       window.addEventListener("orientationchange", function() {
-    alert("the orientation of the device is now " + screen.orientation.angle);
+     if(window.innerHeight > window.innerWidth){
+      turnDeviceNotification.style.zIndex = "0";
+     }else {
+      turnDeviceNotification.style.zIndex = "3"; 
+     }
 });
       
       </script>  
