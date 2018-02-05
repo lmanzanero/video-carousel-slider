@@ -11,6 +11,7 @@
  
 <body >
     <div class="container"> 
+        <div class="turnDeviceNotification"></div>
         <div id="arrow-left" class="arrow">
           <img src="imgs/002-back.png" alt="left arrow">
         </div>
@@ -57,6 +58,7 @@
       // const scrollRightArrow = document.querySelector('#carousel-arrow-right');
       const imgs = document.querySelectorAll(".imgs video");
       const imgsContainer = document.querySelector("#imgs-container");
+      const turnDeviceNotification = document.querySelector('.turnDeviceNotification');
       const opacity = 0.4;
       console.log(imgs);
     
@@ -138,7 +140,14 @@
      if(window.innerWidth > 1000){
        changeVideoWidth();
      }
+
+     if(window.innerHeight > window.innerWidth){
+      turnDeviceNotification.style.zIndex = "3"; 
+    } else {
+      turnDeviceNotification.style.zIndex = "0"; 
+    }
      
+      console.log(window.screen.orientation);
       
       </script>  
     

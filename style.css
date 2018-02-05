@@ -151,3 +151,16 @@ img {
   margin-right: 85px;
 }
  
+.turnDeviceNotification {
+  position:fixed;
+  top: 0;
+  left:0;
+  height:100%;
+  width:100%;
+  display: block; 
+}
+
+.turnDeviceNotification {
+  background-image:url('imgs/turn-device.png');
+  background-size:cover;
+}
