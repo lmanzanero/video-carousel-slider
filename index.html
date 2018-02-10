@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">  
  </head>
  
-<body >
+<body>
     <ul>
         <li><a class="active" href="#home">Home</a></li>
         <li><a href="#news">News</a></li>
@@ -159,7 +159,8 @@
      
       
       window.addEventListener("load",  checkOrientation);
-      window.addEventListener("orientationchange",  changeOrientation);
+      window.addEventListener("orientationchange",  changeOrientation); 
+       
 
   const topOfImgsContainer = imgsContainer.offsetHeight;
   const topOfVideoContainer = videoContainer.offsetTop;
@@ -168,9 +169,9 @@
     function fixedImgsContainer(){
       if(window.scrollY <= topOfImgsContainer + 20 && window.innerHeight < window.innerWidth){
         imgsContainer.style.position = "fixed"; 
+        setTimeout(function(){imgsContainer.style.position = "relative";  }, 5000);
       } else{
-        imgsContainer.style.position = "relative";
-         
+        imgsContainer.style.position = "relative"; 
       } 
     }
 
