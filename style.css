@@ -3,12 +3,18 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  font-family: Courier New, Courier, monospace;
+  font-family: cursive;
   width: 100%;  
   background:#252525;
+  color: #fff;
   overflow-x: hidden;
 }
- 
+ .main-body {
+   position: relative;
+   padding: 15px;
+   color: #fff;
+   width: 100%; 
+ }
   
   .container {
     position: relative; 
@@ -16,41 +22,80 @@ body {
     background:#252525;
     width: 100%;
   }
+ 
 
-.body{
-  position: relative;
-}
-  
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: relative;
-  top: 0;
-  width: 100%;
-  z-index: 2;
+.navbar{
+  background-color:#252525;
+  overflow:hidden;
+  height:63px;
 }
 
-li {
-  float: left;
+.navbar a{
+  float:left;
+  display:block;
+  color:#f2f2f2;
+  text-align:center;
+  padding:14px 16px;
+  text-decoration:none;
+  font-size:17px;
+  border-radius: 5px;
 }
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+.navbar ul{
+  margin:8px 0 0 0;
+  list-style:none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+.navbar a:hover{
+  background-color:#333;
+  color:#000;
 }
 
-.active {
-  background-color: #4CAF50;
+.side-nav{
+  height:100%;
+  width:0;
+  position:fixed;
+  z-index:1;
+  top:0;
+  left:0;
+  background-color:#111;
+  opacity:0.9;
+  overflow-x:hidden;
+  padding-top:60px;
+  transition:0.5s;
+}
+
+.side-nav a{
+  padding:10px 10px 10px 30px;
+  text-decoration:none;
+  font-size:22px;
+  color:#ccc;
+  display:block;
+  transition:0.3s;
+}
+
+.side-nav a:hover{
+  color:#fff;
+}
+
+.side-nav .btn-close{
+  position:absolute;
+  top:0;
+  right:22px;
+  font-size:36px;
+  margin-left:50px;
+}
+
+#main{
+  transition:margin-left 0.5s;
+}
+
+@media(max-width:568px){
+  .navbar-nav{display:none}
+}
+
+@media(min-width:568px){
+  /*.open-slide{display:none}*/
 }
  
   .main-img {  
@@ -80,7 +125,9 @@ li a:hover:not(.active) {
   }
   
   #imgs-container {
-    background:  rgba(0,0,0,0.25);  
+    position: relative;
+    margin: 0;
+    background:  #2e2e2e;  
     width: 100%; 
     left: 0;
     bottom: 0;
@@ -160,14 +207,14 @@ li a:hover:not(.active) {
 .arrow { 
   cursor: pointer;
   position: absolute;
-  top: 40%;
+  top: 50%;
   margin-top: -40px;
   width: 0;
   height: 0; 
   z-index: 2;
 } 
 
-img {
+.arrow img {
   width: 70px; 
   margin: 0 auto;
   margin-top: -40px
@@ -187,19 +234,21 @@ img {
   right: 0;
   margin-right: 85px;
 }
- 
-.turnDeviceNotification {
-  position:fixed;
-  top: 0;
-  left:0;
-  height:100%;
-  width:100%; 
-}
 
 .turnDeviceNotification {
-  background-image:url('imgs/turn-device.png');
-  background-size:cover;
-  background-position: center; 
-  background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: 140px;
+  top: 0;
+  left: 0;
 }
- 
+
+.turnDeviceNotification img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  margin: 0; 
+  display: block !important;
+}
+/* .ytp-pause-overlay .ytp-scroll-min { 
+  display: none !important;
+} */

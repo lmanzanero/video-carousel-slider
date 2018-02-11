@@ -7,61 +7,83 @@
     <title>Carousel Slider</title>
     <link rel="js" href="/main.js">
     <link rel="stylesheet" href="style.css">  
+    <script src="https://player.vimeo.com/api/player.js"></script>
  </head>
  
-<body>
-    <ul>
-        <li><a class="active" href="#home">Home</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    <div class="container"> 
-        <div class="turnDeviceNotification"></div>
+<body id="main">
+    <nav class="navbar">
+        <span class="open-slide">
+          <a href="#" onclick="openSlideMenu()">
+            <svg width="30" height="30">
+                <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+                <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+                <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+            </svg>
+          </a>
+        </span>
+    
+        <ul class="navbar-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    
+      <div id="side-menu" class="side-nav">
+        <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </div>
+    
+    
+    
+    <div class="container">
         <div id="arrow-left" class="arrow">
           <img src="imgs/002-back.png" alt="left arrow">
         </div>
         <!-- <div id="carousel-arrow-left" class="carousel-arrow"></div> -->
         <div class="main-img">
           <iframe id="current"  src="https://player.vimeo.com/video/251587788?autoplay=1" frameborder="0"  mozallowfullscreen allowfullscreen></iframe>
-            <!-- <div class="main-img-content">
-                <h3 id="title">Hummingbird Arial Video Teaser</h3>
-                <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
-              <button class="button">Learn more</button>
-            </div> -->
         </div>
-      
-        <div class="imgs" id="imgs-container">  
+        <div id="arrow-right" class="arrow"> 
+            <img src="imgs/001-next.png" alt="left arrow">
+        </div>
+        <!-- <div id="carousel-arrow-right" class="carousel-arrow"></div> -->
+      </div>    
+      <div class="imgs" id="imgs-container">  
           <video src="https://player.vimeo.com/video/251587788?autoplay=1" poster="imgs/teaser.png" title="Hummingbird Arial Video Teaser"  frameborder="0">
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video> 
           <video src="https://player.vimeo.com/video/229508770?autoplay=1" poster="imgs/vaca-lake.png" title="Vaca Lake Tour - BucketList Belize"   frameborder="0" autoplay>
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video> 
-          <video src="https://www.youtube.com/embed/C5ITJ_nIFgQ?autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/C5ITJ_nIFgQ/0.jpg" title="Design Recline's Online Permaculture Design Course"   frameborder="0">
+          <video src="https://www.youtube.com/embed/C5ITJ_nIFgQ?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/C5ITJ_nIFgQ/0.jpg" title="Design Recline's Online Permaculture Design Course"   frameborder="0">
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video>
-          <video src="https://www.youtube.com/embed/Xbd9OLgT_uQ?autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/Xbd9OLgT_uQ/0.jpg" title="Permaculture Made Easy - Brilliant Banana Circles"  frameborder="0">
+          <video src="https://www.youtube.com/embed/Xbd9OLgT_uQ?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/Xbd9OLgT_uQ/0.jpg" title="Permaculture Made Easy - Brilliant Banana Circles"  frameborder="0">
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video>
-          <video src="https://www.youtube.com/embed/qikO1_N-aWs?autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/qikO1_N-aWs/0.jpg" title="Dynamo Comfrey- Permaculture Made Easy"   frameborder="0">
+          <video src="https://www.youtube.com/embed/qikO1_N-aWs?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/qikO1_N-aWs/0.jpg" title="Dynamo Comfrey- Permaculture Made Easy"   frameborder="0">
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video> 
         </div>
-        <div id="arrow-right" class="arrow"> 
-            <img src="imgs/001-next.png" alt="left arrow">
+        <div class="turnDeviceNotification">
+          <img src="imgs/turn-device.png" alt="turn-device">
         </div>
-        <!-- <div id="carousel-arrow-right" class="carousel-arrow"></div> -->
-      </div> 
-      <div class="body" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px; z-index: 2;">
+        <div class="main-body">
           <h1>Heading 1</h1>
-          <h2>Heading 2</h2>
-          <h2>Heading 3</h2>
-          
-          <p>Some text some text some text some text..</p>
-     
-          </div>
-          
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
+          <h1>Heading 1</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
+          <h1>Heading 1</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
+          <h1>Heading 1</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
+        </div>
+         
       <script>
       
       const current = document.querySelector("#current");  
@@ -77,7 +99,7 @@
       const turnDeviceNotification = document.querySelector('.turnDeviceNotification');
       const mainBody = document.querySelector('.body');
       const opacity = 0.4;
-      console.log(imgs);
+      let iframe, player; 
     
     // Set first img opacity
     imgs[0].style.opacity = opacity; 
@@ -103,6 +125,7 @@
          currentImg = - 1; 
       }
     current.src = imgs[currentImg + 1].src;
+    iframe = current;
     // imgTitle.innerHTML = imgs[currentImg + 1].title; 
     // imgContent.innerHTML = imgs[currentImg + 1].textContent; 
     imgs.forEach(img => (img.style.opacity = 1));
@@ -125,8 +148,6 @@
       // imgTitle.innerHTML = e.target.title;  
       // imgContent.innerHTML = e.target.textContent;
       
-     
-      
     
       // Add fade in class
       current.classList.add("fade-in");
@@ -143,15 +164,14 @@
     
     function changeOrientation() {
      if(window.innerHeight > window.innerWidth){
-      turnDeviceNotification.style.zIndex = "0";
+      turnDeviceNotification.style.display = "block"
      }else {
-      turnDeviceNotification.style.zIndex = "3";  
+      turnDeviceNotification.style.display = "none";  
      }
 }
     function checkOrientation(){
       if(window.screen.orientation.type === "portrait-primary"){
-        turnDeviceNotification.style.display = "block";
-        turnDeviceNotification.style.zIndex = "3"; 
+        turnDeviceNotification.style.display = "block"; 
       } else {
         turnDeviceNotification.style.display = "none"; 
       }
@@ -163,28 +183,57 @@
        
 
   const topOfImgsContainer = imgsContainer.offsetHeight;
-  const topOfVideoContainer = videoContainer.offsetTop;
-  const topOfMainBody = mainBody.scrollHeight;
+  const topOfVideoContainer = videoContainer.offsetTop; 
 
-    function fixedImgsContainer(){
-      if(window.scrollY <= topOfImgsContainer + 20 && window.innerHeight < window.innerWidth){
+    function fixedImgsContainer(){ 
+      if(window.scrollY <= topOfImgsContainer && window.innerHeight < window.innerWidth){
         imgsContainer.style.position = "fixed"; 
-        setTimeout(function(){imgsContainer.style.position = "relative";  }, 5000);
+        imgsContainer.style.background = "rgba(0,0,0,0.25)";
       } else{
         imgsContainer.style.position = "relative"; 
+        imgsContainer.style.background = "#2e2e2e";
       } 
+      if(imgsContainer.style.position == "fixed"){
+        console.log("Imgs Container is fixed");
+        imgsContainer.addEventListener('mouseenter', function() {
+          imgsContainer.style.position = "fixed";
+           console.log("Enter");
+         }); 
+         imgsContainer.addEventListener('mouseleave', function() {
+          imgsContainer.style.position = "relative";
+           console.log("leave");
+         }); 
+        } else {
+          console.log("Imgs Container is relative");
+          //Need to add the event listener, or else the DOM become buggy and jumpy.
+          imgsContainer.addEventListener('mouseenter', function() {
+           imgsContainer.style.position = "relative";
+         });
+        }
+    } 
+
+    window.addEventListener('scroll', fixedImgsContainer, false);
+
+
+ 
+     iframe = current; 
+     player = new Vimeo.Player(iframe);
+
+    player.on('ended', function(event) {
+      console.log("Finished", event); 
+        rightArrow();   
+    }); 
+    
+    function openSlideMenu(){
+      document.getElementById('side-menu').style.width = '250px';
+      document.getElementById('main').style.marginLeft = '250px';
     }
 
-    function fixedVideoContainer(){ 
-      // console.log(window.pageYOffset);
-      
-     
+    function closeSlideMenu(){
+      document.getElementById('side-menu').style.width = '0';
+      document.getElementById('main').style.marginLeft = '0';
     }
-
-    window.addEventListener('scroll', fixedVideoContainer);
-    window.addEventListener('scroll', fixedImgsContainer);
-      
       </script>  
     
-</body>
+  </body>
 </html>
