@@ -1,3 +1,5 @@
+//Will re-create all of this code so it works with the API
+/*
 const current = document.querySelector("#current");  
 const videoContainer = document.querySelector('.video-container'); 
 const leftButton = document.querySelector('#arrow-left');
@@ -146,3 +148,4 @@ function closeSlideMenu(){
 document.getElementById('side-menu').style.width = '0';
 document.getElementById('main').style.marginLeft = '0';
 } 
+*/
