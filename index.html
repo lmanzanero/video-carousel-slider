@@ -5,56 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Carousel Slider</title>
-    <link rel="js" href="/main.js">
     <link rel="stylesheet" href="style.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <script src="https://player.vimeo.com/api/player.js"></script>
  </head>
  
-<body id="main">
-    <nav class="navbar">
-        <span class="open-slide">
-          <a href="#" onclick="openSlideMenu()">
-            <svg width="30" height="30">
-                <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-                <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-                <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
-            </svg>
-          </a>
-        </span>
-    
-        <ul class="navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-    
-      <div id="side-menu" class="side-nav">
-        <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-      </div>
-    
-    
-    
-    <div class="container">
+<body>
+  <div id="video-slider"> 
+    <div class="video-container">
         <div id="arrow-left" class="arrow">
           <img src="imgs/002-back.png" alt="left arrow">
-        </div>
-        <!-- <div id="carousel-arrow-left" class="carousel-arrow"></div> -->
-        <div class="main-img">
+        </div> 
+        <div class="main-video">
           <iframe id="current" class="animated" src="https://player.vimeo.com/video/251587788?autoplay=1" frameborder="0"  mozallowfullscreen allowfullscreen></iframe>
         </div>
         <div id="arrow-right" class="arrow"> 
             <img src="imgs/001-next.png" alt="left arrow">
-        </div>
-        <!-- <div id="carousel-arrow-right" class="carousel-arrow"></div> -->
+        </div> 
       </div>    
-      <div class="imgs" id="imgs-container">  
+      <div class="videos" id="videos-container">  
           <video src="https://player.vimeo.com/video/251587788?autoplay=1" poster="imgs/teaser.png" title="Hummingbird Arial Video Teaser"  frameborder="0">
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
           </video> 
@@ -87,187 +56,12 @@
           </video> 
           <video src="https://player.vimeo.com/video/98711931?autoplay=1" poster="imgs/vaca-lake.png" title="Vaca Lake Tour - BucketList Belize"   frameborder="0" autoplay>
             <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
-          </video> 
-          <!-- <video src="https://www.youtube.com/embed/C5ITJ_nIFgQ?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/C5ITJ_nIFgQ/0.jpg" title="Design Recline's Online Permaculture Design Course"   frameborder="0">
-            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
-          </video>
-          <video src="https://www.youtube.com/embed/Xbd9OLgT_uQ?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/Xbd9OLgT_uQ/0.jpg" title="Permaculture Made Easy - Brilliant Banana Circles"  frameborder="0">
-            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
-          </video>
-          <video src="https://www.youtube.com/embed/qikO1_N-aWs?rel=0;autoplay=1;modestbranding=1;autohide=1&amp;showinfo=0&amp;controls=0;" poster="https://img.youtube.com/vi/qikO1_N-aWs/0.jpg" title="Dynamo Comfrey- Permaculture Made Easy"   frameborder="0">
-            <p id="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repellat asperiores beatae reprehenderit officia qui, magni, consectetur quaerat quidem sunt commodi reiciendis, aperiam laboriosam autem voluptates? In provident accusamus maiores?</p>
-          </video>  -->
+          </video>  
         </div>
         <div class="turnDeviceNotification">
           <img src="imgs/turn-device.png" alt="turn-device">
         </div>
-        <div class="main-body">
-          <h1>Heading 1</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
-          <h1>Heading 1</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
-          <h1>Heading 1</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
-          <h1>Heading 1</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum alias culpa quam eius aspernatur illo dolor magnam laboriosam minus beatae voluptatum eum, sapiente laudantium reiciendis neque non quasi officia pariatur.</p>
-        </div>
-         
-      <script>
-      
-      const current = document.querySelector("#current");  
-      const videoContainer = document.querySelector('.container');
-      // const imgTitle = document.querySelector("#title");
-      // const imgContent = document.querySelector("#content");
-      const leftButton = document.querySelector('#arrow-left');
-      const rightButton = document.querySelector('#arrow-right');
-      // const scrollLeftArrow = document.querySelector('#carousel-arrow-left');
-      // const scrollRightArrow = document.querySelector('#carousel-arrow-right');
-      const imgs = document.querySelectorAll(".imgs video");
-      const imgsContainer = document.querySelector("#imgs-container");
-      const turnDeviceNotification = document.querySelector('.turnDeviceNotification');
-      const mainBody = document.querySelector('.body'); 
-      let currentImg = 0;
-      let iframe, player; 
-    
-    // Set first img opacity
-    imgs[0].style.cssText = "border: 2px; border-style: solid; border-color: green; max-height: 63px; max-width: 122px; padding: 4px; background-color: transparent; border-radius: 10px;"; 
-    
-    
-
-    function leftArrow(){
-      if(currentImg === 0){
-        currentImg = imgs.length;  
-      }
-      current.src = imgs[currentImg - 1].src; 
-      imgs.forEach(img => (img.style.cssText = "border: rgb(56, 55, 55) solid 1px; border-radius: 5px;"));
-      imgs[currentImg - 1 ].style.cssText = "border: 2px; border-style: solid; border-color: green; max-height: 63px; max-width: 122px; padding: 4px; background-color: transparent; border-radius: 10px;"; 
-      current.classList.add("bounceInRight");
-        // Remove fade-in class after .5 seconds
-        setTimeout(() => current.classList.remove("bounceInRight"), 1000);
-      
-    currentImg --;
-    }
-
-    function rightArrow(){ 
-      if(currentImg === imgs.length - 1){
-         currentImg = - 1; 
-      }
-    current.src = imgs[currentImg + 1].src;
-    iframe = current; 
-    imgs.forEach(img => (img.style.cssText = "border: rgb(56, 55, 55) solid 1px; border-radius: 5px;"));
-    imgs[currentImg + 1 ].style.cssText = "border: 2px; border-style: solid; border-color: green; max-height: 63px; max-width: 122px; padding: 4px; background-color: transparent; border-radius: 10px;"; 
-    current.classList.add("bounceInLeft");
-      // Remove fade-in class after .5 seconds
-      setTimeout(() => current.classList.remove("bounceInLeft"), 1000);
-    currentImg ++;
-    }
-     
-    leftButton.addEventListener('click', leftArrow);
-    rightButton.addEventListener('click', rightArrow);
-    
-    imgs.forEach(img => img.addEventListener("click", imgClick));
-    
-    function imgClick(e) {
-      // Reset the opacity
-      imgs.forEach(img => (img.style.cssText = "box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.4);border: rgb(56, 55, 55) solid 1px; border-radius: 5px;"));
-    
-      // Change current image to src of clicked image
-      current.src = e.target.src;  
-      let index;
-      let nodeItem = imgs;
-      for(var key of imgs.keys()) { 
-   console.log(key); 
-} 
-      
-      
-   
-      
-    
-      // Add fade in class
-      current.classList.add("fadeInUp");
-    
-      // Remove fade-in class after .5 seconds
-      setTimeout(() => current.classList.remove("fadeInUp"), 800);
-    
-      // Change the opacity to opacity var
-      e.target.style.cssText = "border: 2px; border-style: solid; border-color: green; max-height: 63px; max-width: 122px; padding: 4px; background-color: transparent; border-radius: 10px;";
-    } 
-
-
-    console.log(window.screen.orientation);
-    
-    function changeOrientation() {
-     if(window.innerHeight > window.innerWidth){
-      turnDeviceNotification.style.display = "none"
-     }else {
-      turnDeviceNotification.style.display = "block";  
-     }
-}
-    function checkOrientation(){
-      if(window.screen.orientation.type === "portrait-primary"){
-        turnDeviceNotification.style.display = "block"; 
-      } else {
-        turnDeviceNotification.style.display = "none"; 
-      }
-    }
-     
-      
-      window.addEventListener("load",  checkOrientation);
-      window.addEventListener("orientationchange",  changeOrientation); 
-       
-
-  const topOfImgsContainer = imgsContainer.offsetHeight;
-  const topOfVideoContainer = videoContainer.offsetTop; 
-
-    function fixedImgsContainer(){ 
-      if(window.scrollY <= topOfImgsContainer && window.innerHeight < window.innerWidth){
-        imgsContainer.style.position = "fixed"; 
-        imgsContainer.style.background = "rgba(0,0,0,0.25)"; 
-      } else{
-        imgsContainer.style.position = "relative"; 
-        imgsContainer.style.background = "#2e2e2e";
-      } 
-      if(imgsContainer.style.position == "fixed"){
-        console.log("Imgs Container is fixed");
-        imgsContainer.addEventListener('mouseenter', function() {
-          imgsContainer.style.position = "fixed";
-           console.log("Enter");
-         }); 
-         imgsContainer.addEventListener('mouseleave', function() {
-          imgsContainer.style.position = "relative";
-           console.log("leave");
-         }); 
-        } else {
-          console.log("Imgs Container is relative");
-          //Need to add the event listener, or else the DOM become buggy and jumpy.
-          imgsContainer.addEventListener('mouseenter', function() {
-           imgsContainer.style.position = "relative";
-         });
-        }
-    } 
-
-    window.addEventListener('scroll', fixedImgsContainer, false);
-
-
- 
-     iframe = current; 
-     player = new Vimeo.Player(iframe);
-
-    player.on('ended', function(event) {
-      console.log("Finished", event); 
-        rightArrow();   
-    }); 
-    
-    function openSlideMenu(){
-      document.getElementById('side-menu').style.width = '250px';
-      document.getElementById('main').style.marginLeft = '250px';
-    }
-
-    function closeSlideMenu(){
-      document.getElementById('side-menu').style.width = '0';
-      document.getElementById('main').style.marginLeft = '0';
-    }
-      </script>  
-    
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>
