@@ -1,0 +1,267 @@
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#video-slider {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: cursive;
+  width: 100%;  
+  background:#252525;
+  color: #fff;
+  overflow-x: hidden;
+}
+ /* .main-body {
+   position: relative;
+   padding: 15px;
+   color: #fff;
+   width: 100%; 
+ } */
+  
+  .video-container {
+    position: relative; 
+    margin: auto;
+    background:#252525;
+    width: 100%;
+  }
+ 
+
+/* .navbar{
+  background-color:#252525;
+  overflow:hidden;
+  height:63px;
+}
+
+.navbar a{
+  float:left;
+  display:block;
+  color:#f2f2f2;
+  text-align:center;
+  padding:14px 16px;
+  text-decoration:none;
+  font-size:17px;
+  border-radius: 5px;
+}
+
+.navbar ul{
+  margin:8px 0 0 0;
+  list-style:none;
+}
+
+.navbar a:hover{
+  background-color:#333;
+  color:#000;
+}
+
+.side-nav{
+  height:100%;
+  width:0;
+  position:fixed;
+  z-index:1;
+  top:0;
+  left:0;
+  background-color:#111;
+  opacity:0.9;
+  overflow-x:hidden;
+  padding-top:60px;
+  transition:0.5s;
+}
+
+.side-nav a{
+  padding:10px 10px 10px 30px;
+  text-decoration:none;
+  font-size:22px;
+  color:#ccc;
+  display:block;
+  transition:0.3s;
+}
+
+.side-nav a:hover{
+  color:#fff;
+}
+
+.side-nav .btn-close{
+  position:absolute;
+  top:0;
+  right:22px;
+  font-size:36px;
+  margin-left:50px;
+}
+
+#main{
+  transition:margin-left 0.5s;
+}
+
+@media(max-width:568px){
+  .navbar-nav{display:none}
+}
+
+@media(min-width:568px){
+  /*.open-slide{display:none}
+}
+  */
+  .main-video {  
+      background-color: #1f1f1f;
+      color: #fff;  
+      position:relative; 
+      padding-bottom:56.25%;
+      height:1;
+      overflow:hidden;
+  }
+
+ 
+.main-video iframe, object, embed {
+  position:absolute;  
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+ 
+  .videos { 
+    position: relative;
+    overflow: auto; 
+    display: flex;
+    margin: auto; 
+  }
+  
+  #videos-container {
+    position: relative;
+    margin: 0;
+    background:  #2e2e2e;  
+    width: 100%; 
+    left: 0;
+    bottom: 0;
+  }
+
+  .videos video {
+    flex-grow: 1; 
+    display: inline-block; 
+    background: #2e2e2e;
+    width: 100% !important;
+    height: 40%;
+    max-height: 75px;
+    max-width: 130px;
+    margin: 6px 0px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    border: rgb(56, 55, 55) solid 1px;
+    border-radius: 5px;
+  }  
+  
+  .videos video:hover {
+    padding: 4px;
+    border: 2px !important;
+    border-color: green !important;
+    border-style: solid !important;
+    border-radius: 10px;
+    box-shadow: none !important; 
+    max-height: 63px;
+    max-width: 122px;  
+}
+
+  .videos::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #333;
+  }
+  
+  .videos::-webkit-scrollbar
+  {
+      width: 9px;
+      background-color: #333;
+  }
+  
+  .videos::-webkit-scrollbar-thumb
+  {
+      border-radius: 9px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #555;
+  }
+  
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in 1 forwards;
+  }
+
+  .button {
+    background-color: #2e2e2e;
+    color: #fff;
+    border: 2px solid #555555;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+} 
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.arrow { 
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  width: 0;
+  height: 0; 
+  z-index: 2;
+} 
+
+.arrow img {
+  width: 70px; 
+  margin: 0 auto;
+  margin-top: -40px
+}
+.arrow:hover { 
+  border-color: transparent #413f3f !important;
+}
+
+#arrow-left {  
+  margin: 0;
+  left: 0;
+  margin-left: 3px;
+}
+
+#arrow-right { 
+  margin: 0;
+  right: 0;
+  margin-right: 85px;
+}
+
+.turnDeviceNotification {
+  position: relative;
+  margin-bottom: 140px;
+  top: 0;
+  left: 0;
+}
+
+.turnDeviceNotification img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  margin: 0; 
+  display: block !important;
+}
+/* .ytp-pause-overlay .ytp-scroll-min { 
+  display: none !important;
+} */
