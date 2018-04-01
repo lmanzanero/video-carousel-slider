@@ -1,4 +1,5 @@
 //Will re-create all of this code so it works with the API
+//more comments
 /*
 const current = document.querySelector("#current");  
 const videoContainer = document.querySelector('.video-container'); 
