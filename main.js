@@ -1,3 +1,5 @@
+//Added some comments
+
 const current = document.querySelector("#current");  
 const videoContainer = document.querySelector('.video-container'); 
 const leftButton = document.querySelector('#arrow-left');
