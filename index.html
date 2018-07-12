@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <style>
@@ -22,6 +23,58 @@ body, html {
 }
 .w3-bar .w3-button {
     padding: 16px;
+}
+
+.video-container {
+  padding: 5px;
+  margin: 5px;
+  width: 300px;
+}
+
+.video-title {
+  max-width: 300px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+
+#img01 {
+  position: absolute; 
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+}
+ 
+.w3-button:hover{
+	background-color: #FF725B !important;
+	color: #ffffff !important;
+  box-shadow: 0 5px 23px rgba(102,102,102,.2) !important; 
+}
+.more-btn{
+  border-radius: 1000px;
+	border: 2px solid #77CDF1;
+	color: #77CDF1;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1.125rem;
+	text-decoration: none;
+	font-weight: 600;
+	line-height: 1.6rem;  
+	padding: .8em 2.2em;
+	position: relative; 
+  left: 45%;
+	text-align: center;
+	text-transform: uppercase;
+	transition: all .3s;
+}
+
+.more-btn:hover {  
+	background-color: #FF725B;
+	color: #ffffff;
+  box-shadow: 0 5px 23px rgba(102,102,102,.2); 
 }
 </style>
 <body>
@@ -116,43 +169,17 @@ body, html {
 <div class="w3-container" style="padding:128px 16px" id="work">
   <h2 class="w3-center">My recent videos</h2>
   <p class="w3-center w3-large">What I've done for people</p>
-
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="video 1">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 2">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 3">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 4">
-    </div>
+  <div class="w3-row-padding" style="margin-top:64px" id="test_slider">
+<!-- MODAL and Slider opens here -->
   </div>
-
-  <div class="w3-row-padding w3-section">
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 5">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 6">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 7">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="https://i.ytimg.com/vi/tnz_yuK9qoM/maxresdefault.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Video 8">
-    </div>
-  </div>
+  <button class="more-btn">See More...</button>
 </div>
 
 <!-- Modal for full size images on click-->
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
   <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
   <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-    <img id="img01" class="w3-image">
+    <iframe id="img01" class="w3-image"></iframe>
     <p id="caption" class="w3-opacity w3-large"></p>
   </div>
 </div>
@@ -283,6 +310,42 @@ body, html {
  
 <!-- Add Google Maps -->
 <script>
+
+    const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
+    const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
+    const URL = "https://www.googleapis.com/youtube/v3/playlistItems";
+    let test = document.querySelector("#test_slider"); 
+    
+     
+       var options = {
+        part: 'snippet',
+        key: ApiKey,
+        maxResults: 20,
+        playlistId: playlistId
+    }
+
+    loadVids();
+   
+
+    function loadVids() {
+        $.getJSON(URL, options, function (data) { 
+            $.each(data.items, function (i, item) {
+                let thumb = item.snippet.thumbnails.medium.url;
+                let title = item.snippet.title;
+                let desc = item.snippet.description.substring(0, 100);
+                let vid = item.snippet.resourceId.videoId;  
+                console.log(thumb);
+                
+                test.innerHTML += `<div class="videos-container w3-col l3 m6">
+                        <div class="video-container">
+                        <h4 class="video-title">${title}</h4>
+                       <video src="https://www.youtube.com/embed/${vid}" poster=${thumb} style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=${desc}></video>
+                        </div>
+                      </div>`; 
+            
+                });
+        });
+    }
 function myMap()
 {
   myCenter=new google.maps.LatLng(41.878114, -87.629798);
@@ -301,7 +364,7 @@ function myMap()
 
 // Modal Image Gallery
 function onClick(element) {
-  document.getElementById("img01").src = element.src;
+  document.getElementById("img01").src = element.src; 
   document.getElementById("modal01").style.display = "block";
   var captionText = document.getElementById("caption");
   captionText.innerHTML = element.alt;
