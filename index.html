@@ -5,15 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
   <script>
     let player;
-    let videos = ['wKaaXzH8xsk', 'dCqJkhbqrUo', 'Q7JsK50NGaA'];
+    let currentVideo = 'wKaaXzH8xsk'; 
+    
+ 
 
-    function onYouTubeIframeAPIReady() {
+    function onYouTubeIframeAPIReady(video) {
         console.log('iFrame Ready');
         player = new YT.Player('player', { // player param is dom element id
-             
-            videoId: videos[2],
+            videoId: currentVideo,
+            height: '700px',
+          width: '100%',
             playerVars: {
                 controls: 0,
                 rel: 0,
@@ -51,7 +58,10 @@
     function controlUnmute() {
         player.unMute();
     } 
-
+    function changeVideo(el) { 
+        player.loadVideoById(`${el.id}`);
+    } 
+  
     
 </script>
 <style>
@@ -60,19 +70,19 @@
     margin: 0;
     padding: 0;
   }
-  #video-container {
-    position: relative;
-	padding-bottom: 50%; /* 16:9 */
+   #video-container {
+    /* position: relative;
+	padding-bottom: 50%; 
 	padding-top: 25px;
-	height: 0
+	height: 0; */
   }
 #video-container iframe {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	/* top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
-}
+	height: 100%; */
+}  
 
 
   .controllers {
@@ -82,7 +92,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: rgba(34, 33, 33, 0.1);
     align-content: center;
     text-align: center;
@@ -106,9 +116,9 @@
   }
 
   .controllers .control {
-    width: 60px;
+    width: 50px;
     background: cadetblue;
-    margin: 10px;
+    margin: 5px;
     padding: 5px;
     border-radius: 4px;
   }
@@ -125,7 +135,7 @@
     padding: 8px;
     z-index: 3000; 
     left: 3%;
-    bottom: 8%;
+    bottom: 7%;
     width:90%;
     height: 90px;
     background-color: rgba(34, 33, 33, 0.4);
@@ -160,24 +170,18 @@
     margin-right: 5px;
     background-color: blue; 
   }
+  .video-carousel .video img{
+      width: 170px;
+      height: 80px;
+  }
 </style>
 </head>
 <body>
   <div id="video-container">
       <div id="player"></div>
   </div>
-  <div class="video-carousel"> 
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div>
-      <div class="video">Video</div> 
+  <div class="video-carousel">  
+
   </div>
    
 
@@ -195,6 +199,10 @@
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
+      
+    const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
+    const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
+    const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
     let carousel = document.querySelector('.video-carousel'); 
     // let play = document.querySelector('.play');
     // let pause =document.querySelector('.pause');
@@ -223,6 +231,35 @@
       $('.control.unmute').on('click', function() {
           controlUnmute();
       });
+      console.log(carousel);
+    
+     
+    var options = {
+     part: 'snippet',
+     key: ApiKey,
+     maxResults: 20,
+     playlistId: playlistId
+ }
+
+ loadVids();
+
+
+ function loadVids() {
+     $.getJSON(URL, options, function (data) { 
+         $.each(data.items, function (i, item) {
+             let thumb = item.snippet.thumbnails.medium.url;
+             let title = item.snippet.title;
+             let desc = item.snippet.description.substring(0, 100);
+             let vid = item.snippet.resourceId.videoId;  
+             console.log(thumb);
+             
+             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><img src="${thumb}"  alt="${desc}"/></div>`;
+             });
+     });
+ }
+ 
+
+   
   </script>
 </body>
 </html>
