@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
-<title>Justin Hayes</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!-- <link href="/YTPlayer.css" media="all" rel="stylesheet" type="text/css"> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link href="jquery.mb.YTPlayer.css" media="all" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="jquery.mb.YTPlayer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+ 
+</script>
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 body, html {
     height: 100%;
     line-height: 1.8;
 }
 
+ 
 /* Full height image header */
 .bgimg-1 {
     background-position: center;
@@ -29,25 +32,8 @@ body, html {
     padding: 16px;
 }
 
-.video-container {
-  padding: 5px;
-  margin: 5px;
-  width: 300px;
-}
-
-.video-title {
-  max-width: 300px; 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} 
-
-iframe {
-    width: 100% !important;
-    height: 100% !important;
-    left: 32px !important;
-}
-
+ 
+ 
 
 #img01 {
   position: absolute; 
@@ -86,308 +72,335 @@ iframe {
 	color: #ffffff;
   box-shadow: 0 5px 23px rgba(102,102,102,.2); 
 }
-</style>
-<body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-opacity-max w3-card" id="myNavbar">
-    <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes</a>
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">ABOUT</a> 
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
-      <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-    </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
-</div>
-
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a> 
-  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
-</nav>
-
-<!-- Header with full-height image -->
-<header class="bgimg-1 w3-container w3-grayscale-min" id="home">
-  <div class="w3-display-left w3-text-white" style="padding:48px">
-    <span class="w3-jumbo w3-hide-small">Saving the world one Video at the time</span><br>
-    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Saving the world one Video at the time</span><br>
-    <span class="w3-large">I'm here to take your product to the next level!</span>
-    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off mute">Learn more...</a></p>
-  </div> 
-  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
-    <i class="fab fa-facebook-square w3-hover-opacity"></i>
-    <i class="fab fa-instagram w3-hover-opacity"></i>
-    <i class="fab fa-snapchat w3-hover-opacity"></i> 
-    <i class="fab fa-linkedin w3-hover-opacity"></i>
-  </div>
-</header>
-
-<!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
-  <h3 class="w3-center">ABOUT ME</h3>
-  <p class="w3-center w3-large">I Love taking your product to the next level!</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px">
-    <div class="w3-quarter">
-      <i class="fas fa-user-clock w3-margin-bottom w3-jumbo w3-center"></i>
-      <p class="w3-large">Timely</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Passion</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="far fa-gem w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Unique</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Support</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Promo Section - "We know design" -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h3>Not convinced? See my works below.</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
-      <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View recent videos</a></p>
-    </div>
-    <div class="w3-col m6">
-      <img class="w3-image w3-round-large" src="https://assets.rocketstock.com/uploads/2016/09/Editing-Announcements-Feature-1000x576.jpg" alt="Buildings" width="700" height="394">
-    </div>
-  </div>
-</div>
-
-<!-- Work Section -->
-<div class="w3-container" style="padding:128px 16px" id="work">
-  <h2 class="w3-center">My recent videos</h2>
-  <p class="w3-center w3-large">What I've done for people</p>
-  <div class="w3-row-padding" style="margin-top:64px" id="test_slider">
-<!-- MODAL and Slider opens here -->
-  </div>
-  <button class="more-btn">See More...</button>
-</div>
-
-<!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
-  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-    <div class="videoContainer">
-      <iframe id="img01" class="w3-image"></iframe>
-    </div>
-    <p id="caption" class="w3-opacity w3-large"></p>
-  </div>
-</div>
-
-<!-- Skills Section -->
-<div class="w3-container w3-padding-64">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h3>My Skills.</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-col m6">
-      <p class="w3-wide"><i class="fa fa-camera w3-margin-right"></i>Video Edithing/Film Making</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:90%">90%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-desktop w3-margin-right"></i>Photography</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-photo w3-margin-right"></i>Photoshop</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:75%">75%</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Pricing Section -->
-<div class="w3-container" style="padding:128px 16px" id="pricing">
-  <h3>PRICING</h3>
-  <p class="w3-large">Choose a pricing plan that fits your needs.</p>
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-third w3-section">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
-        <li class="w3-padding-16"><b>2 minutes</b> Video</li>
-        <li class="w3-padding-16"><b>10</b> Edited Pictures</li>
-        <li class="w3-padding-16"><b>1</b> blog post</li>
-        <li class="w3-padding-16"><b>Endless</b> Support</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 250</h2>
-          <span class="w3-opacity">per project</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-black w3-padding-large">Let's Talk</button>
-        </li>
-      </ul>
-    </div>
-    <div class="w3-third">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-red w3-xlarge w3-padding-48">Pro</li>
-        <li class="w3-padding-16"><b>5 minute</b> Video</li>
-        <li class="w3-padding-16"><b>25</b> Edited Photos</li>
-        <li class="w3-padding-16"><b>2</b> blog posts</li>
-        <li class="w3-padding-16"><b>Endless</b> Support</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 400</h2>
-          <span class="w3-opacity">per project</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-black w3-padding-large">Let's Talk</button>
-        </li>
-      </ul>
-    </div>
-    <div class="w3-third w3-section">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
-        <li class="w3-padding-16"><b>10 minute</b> Video</li>
-        <li class="w3-padding-16"><b>30 </b> Edited photos</li>
-        <li class="w3-padding-16"><b>3 </b> blog posts</li>
-        <li class="w3-padding-16"><b>Endless</b> Support</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 700 </h2>
-          <span class="w3-opacity">per project</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-black w3-padding-large">Let's Talk</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Contact Section -->
-<div class="w3-container" style="padding:128px 16px" id="contact">
-  <h3 class="w3-center">CONTACT</h3>
-  <p class="w3-center w3-large">Lets get in touch. Send me message:</p>
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-half">
-      <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> San Ignacio,Belize</p>
-      <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
-      <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: justin@gmail.com</p>
-      <br>
-      <form action="/action_page.php" target="_blank">
-        <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-        <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-        <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
-        <p>
-          <button class="w3-button w3-black" type="submit">
-            <i class="fa fa-paper-plane"></i> SEND MESSAGE
-          </button>
-        </p>
-      </form>
-    </div>
-    <div class="w3-half">
-      <!-- Add Google Maps -->
-      <div id="googleMap" class="w3-greyscale-max" style="width:100%;height:510px;"></div>
-    </div>
-  </div>
-</div>
-
-<div id="youtubePlayer" class="player" data-property="{videoURL:'http://youtu.be/wKaaXzH8xsk', containment:'body', ratio: 16/9, useOnMobile:true,autoPlay:true, mute:false, startAt:0, opacity:1, showControls: true, realfullscreen: true, optimizeDisplay: true}">
-
-</div>
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <div class="w3-xlarge w3-section">
-    <i class="fab fa-facebook-square w3-hover-opacity"></i>
-    <i class="fab fa-instagram w3-hover-opacity"></i>
-    <i class="fab fa-snapchat w3-hover-opacity"></i> 
-    <i class="fab fa-linkedin w3-hover-opacity"></i>
-  </div>
-  <p>Done by <a href="#" title="Luis Manzanero" target="_blank" class="w3-hover-text-blue">Luis Manzanero</a></p>
-</footer>
+  body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+   #video-container {
+    background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+    /* position: relative;
+	padding-bottom: 50%; 
+	padding-top: 25px;
+	height: 0; */
+  }
+#video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+	/* top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%; */
+}  
+  .controllers {
+    position: fixed; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(34, 33, 33, 0.1);
+    align-content: center;
+    text-align: center;
+    z-index: 3000;
+    left: 0;
+    bottom: 0;
+  }
+  .controllers .control {
+    opacity: 0.3;
+  }
+   .controllers .control:hover {
+    opacity: 1;
+  }
+  
+  .controllers:hover{
+    background-color: rgba(34, 33, 33, 0.4);
+  }
+  .controllers .control {
+    width: 50px;
+    background: cadetblue;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  .controllers .control:hover {
+    background-color: cyan; 
+  }
+  .video-carousel {
+    position: fixed;
+    display: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 8px;
+    z-index: 3000; 
+    left: 3%;
+    bottom: 7%;
+    width:90%;
+    height: 90px;
+    background-color: rgba(34, 33, 33, 0.4);
+    -webkit-overflow-scrolling: touch;
+  } 
+  .video-carousel::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgb(150, 148, 148);
+}
+.video-carousel::-webkit-scrollbar
+{
+	width: 12px;
+  height: 12px;
+	background-color: rgb(150, 148, 148);
+}
+.video-carousel::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
  
-<!-- Add Google Maps -->
-<script>
+  .video-carousel .video {
+    display: inline-block;
+    min-width: 170px;
+    height: 80px;
+    margin-right: 5px;
+    background-color: blue; 
+  }
+  .video-carousel .video img{
+      width: 170px;
+      height: 80px;
+  }
+ 
+</style>
+</head>
+<body> 
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-opacity-max w3-card" id="myNavbar">
+          <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes</a>
+          <!-- Right-sided navbar links -->
+          <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button">ABOUT</a> 
+            <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
+            <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a>
+            <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+          </div>
+          <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+      
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a> 
+    <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+    <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+  </nav>
+  
+  <!-- Header with full-height image -->
+  <header class="bgimg-1 w3-container w3-grayscale-min" id="home">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+      <span class="w3-jumbo w3-hide-small">Saving the world one Video at the time</span><br>
+      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Saving the world one Video at the time</span><br>
+      <span class="w3-large">I'm here to take your product to the next level!</span>
+      <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off mute">Learn more...</a></p>
+    </div> 
+    <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+      <i class="fab fa-facebook-square w3-hover-opacity"></i>
+      <i class="fab fa-instagram w3-hover-opacity"></i>
+      <i class="fab fa-snapchat w3-hover-opacity"></i> 
+      <i class="fab fa-linkedin w3-hover-opacity"></i>
+    </div>
+  </header>
+  
+  <!-- About Section -->
+  <div class="w3-container" style="padding:128px 16px" id="about">
+    <h3 class="w3-center">ABOUT ME</h3>
+    <p class="w3-center w3-large">I Love taking your product to the next level!</p>
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+      <div class="w3-quarter">
+        <i class="fas fa-user-clock w3-margin-bottom w3-jumbo w3-center"></i>
+        <p class="w3-large">Timely</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Passion</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="far fa-gem w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Unique</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Support</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Promo Section - "We know design" -->
+  <div class="w3-container w3-light-grey" style="padding:128px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <h3>Not convinced? See my works below.</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
+        <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View recent videos</a></p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="https://assets.rocketstock.com/uploads/2016/09/Editing-Announcements-Feature-1000x576.jpg" alt="Buildings" width="700" height="394">
+      </div>
+    </div>
+  </div>
+  <div id="video-container">
+      <div id="player"></div>
+  </div>
+  <div class="video-carousel">  
 
-    const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
-    const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
-    const URL = "https://www.googleapis.com/youtube/v3/playlistItems";
-    let test = document.querySelector("#test_slider"); 
-    
-     
-       var options = {
-        part: 'snippet',
-        key: ApiKey,
-        maxResults: 20,
-        playlistId: playlistId
-    }
-
-    loadVids();
+  </div>
    
 
-    function loadVids() {
-        $.getJSON(URL, options, function (data) { 
-            $.each(data.items, function (i, item) {
-                let thumb = item.snippet.thumbnails.medium.url;
-                let title = item.snippet.title;
-                let desc = item.snippet.description.substring(0, 100);
-                let vid = item.snippet.resourceId.videoId;  
-                console.log(thumb);
-                
-                test.innerHTML += `<div class="videos-container w3-col l3 m6">
-                        <div class="video-container">
-                        <h4 class="video-title">${title}</h4>
-                       <video src="https://www.youtube.com/embed/${vid}" poster=${thumb} style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=${desc}></video>
-                        </div>
-                      </div>`; 
-            
-                });
+  <div class="controllers">
+      <div class="control play">Play</div>
+      <div class="control pause">Pause</div>
+      <div class="control mute">Mute</div>
+      <div class="control unmute">Unmute</div>
+  </div> 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+  
+  <!-- can load this via ajax if you prefer -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <script>
+      
+    const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
+    const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
+    const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
+    let carousel = document.querySelector('.video-carousel');
+    let videoContainer = document.querySelector('#video-container');
+    let player; 
+ 
+    function onYouTubeIframeAPIReady() {
+        console.log('iFrame Ready');
+        player = new YT.Player('player', { // player param is dom element id
+            videoId: 'NmfzWpp0hMc',
+            height: '700px',
+          width: '100%',
+            playerVars: {
+                controls: 0,
+                rel: 0,
+                showinfo: 0,
+                modestbranding: true, // modestbranding conflicts with showinfo
+                autoplay: 0
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
         });
     }
-// function myMap()
-// {
-//   myCenter=new google.maps.LatLng(41.878114, -87.629798);
-//   var mapOptions= {
-//     center:myCenter,
-//     zoom:12, scrollwheel: false, draggable: false,
-//     mapTypeId:google.maps.MapTypeId.ROADMAP
-//   };
-//   var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-
-//   var marker = new google.maps.Marker({
-//     position: myCenter,
-//   });
-//   marker.setMap(map);
-// }
-
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src; 
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
+    function onPlayerReady(e) {
+        console.log('ready');
+        console.log(e);
+        
+        // // will autoplay
+        // e.target.playVideo();
+    }
+    
+    function onPlayerStateChange(e) {
+        console.log('on state change', e);
+    videoContainer.addEventListener('click', () => { 
+      if(e.data === 1){ 
+        videoContainer.style.zIndex = -99; 
+      } 
+       
+    });
+    }
+    function controlPlay() {
+        player.playVideo();
+    }
+    function controlPause() {
+        player.pauseVideo();
+    }
+    function controlMute() {
+        player.mute();
+    }
+    function controlUnmute() {
+        player.unMute();
+    } 
+    function changeVideo(el) { 
+        player.loadVideoById(`${el.id}`, () => {
+          videoContainer.style.zIndex = 2000;
+        });
+    }  
+    // let play = document.querySelector('.play');
+    // let pause =document.querySelector('.pause');
+    // console.log(control);
+    // control.addEventListener('click', (e) => e.preventDefault());
+    // play.addEventListener('click', () => {
+    //   controlPlay();
+    //   carousel.style.display = "none";
+    // });
+      //Unnessary
+      // $('.control').on('click', function(e){
+      //      console.log(e.preventDefault());
+      // });
+      $('.control.play').on('click', function() {
+          controlPlay();
+          carousel.style.display = "none"; 
+          videoContainer.style.zIndex = 2000;
+      });
+      $('.control.pause').on('click', function() {
+          controlPause();
+          carousel.style.display = "block"; 
+          videoContainer.style.zIndex = -99; 
+      });
+      $('.control.mute').on('click', function() {
+          controlMute();
+      });
+      $('.control.unmute').on('click', function() {
+          controlUnmute();
+      });
+      console.log(carousel);
+    
+     
+    var options = {
+     part: 'snippet',
+     key: ApiKey,
+     maxResults: 20,
+     playlistId: playlistId
+ }
+ loadVids();
+ function loadVids() {
+     $.getJSON(URL, options, function (data) { 
+         $.each(data.items, function (i, item) {
+             let thumb = item.snippet.thumbnails.medium.url;
+             let title = item.snippet.title;
+             let desc = item.snippet.description.substring(0, 100);
+             let vid = item.snippet.resourceId.videoId;  
+             console.log(thumb);
+             
+             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><img src="${thumb}"  alt="${desc}"/></div>`;
+             });
+     });
+ }
+ // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
 
 function w3_open() {
@@ -402,16 +415,7 @@ function w3_open() {
 function w3_close() {
     mySidebar.style.display = "none";
 }
-
-jQuery(function(){
-      jQuery("#youtubePlayer").YTPlayer(); 
-    });
-</script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
+   
+  </script>
 </body>
 </html>
