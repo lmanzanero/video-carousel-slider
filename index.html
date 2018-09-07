@@ -314,6 +314,7 @@ body, html {
     let videoContainer = document.querySelector('#video-container');
     let player, iframe; 
     let toggle = videoContainer.style.zIndex;
+    let fullPlayer = document.querySelector('#player');
     
  
  
@@ -328,7 +329,8 @@ body, html {
                 rel: 0,
                 showinfo: 0,
                 modestbranding: true, // modestbranding conflicts with showinfo
-                autoplay: 0
+                autoplay: 0,
+                allowfullscreen: 1
             },
             events: {
                 'onReady': onPlayerReady,
@@ -386,9 +388,9 @@ body, html {
     function playFullscreen (){
   player.playVideo();//won't work on mobile
   
-  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  let requestFullScreen = fullPlayer.requestFullScreen || fullPlayer.mozRequestFullScreen || fullPlayer.webkitRequestFullScreen;
   if (requestFullScreen) {
-    requestFullScreen.bind(iframe)();
+    requestFullScreen.bind(fullPlayer)();
   }
 }
     // let play = document.querySelector('.play');
@@ -424,7 +426,7 @@ body, html {
           controlUnmute();
       });
       $('.control.fullscreen').on('click', function() {
-          playFullscreen();
+        playFullscreen();
       });
       console.log(carousel);
     
