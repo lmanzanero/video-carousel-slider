@@ -180,7 +180,20 @@ body, html {
       width: 170px;
       height: 80px;
   }
- 
+  .turnDeviceNotification {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+
+.turnDeviceNotification img { 
+  z-index: 5000;
+  width: 100%;  
+  display: block !important;
+}
 </style>
 </head>
 <body> 
@@ -280,7 +293,11 @@ body, html {
       <div class="control pause">Pause</div>
       <div class="control mute">Mute</div>
       <div class="control unmute">Unmute</div>
+      <div class="control fullscreen">Full Screen</div>
   </div> 
+  <div class="turnDeviceNotification">
+    <img src="imgs/turn-device.png" alt="turn-device">
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
   
@@ -292,9 +309,13 @@ body, html {
     const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
     const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
     const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
+    const turnDeviceNotification = document.querySelector('.turnDeviceNotification')
     let carousel = document.querySelector('.video-carousel');
     let videoContainer = document.querySelector('#video-container');
-    let player; 
+    let player, iframe; 
+    let toggle = videoContainer.style.zIndex;
+    
+ 
  
     function onYouTubeIframeAPIReady() {
         console.log('iFrame Ready');
@@ -324,14 +345,27 @@ body, html {
     }
     
     function onPlayerStateChange(e) {
-        console.log('on state change', e);
-    videoContainer.addEventListener('click', () => { 
-      if(e.data === 1){ 
-        videoContainer.style.zIndex = -99; 
-      } 
-       
-    });
+        console.log('on state change', e.data); 
+         let stateChange = e.data;
+      if(stateChange = 1){  
+        videoContainer.addEventListener('click', function(){
+          videoContainer.style.zIndex = -99;
+        });
+        // document.addEventListener('click', function(){  
+        //   //must have a copy of the zindex from videoContainer element to work!!!!
+          
+        //   console.log("toggle is ", toggle);
+        //   if(videoContainer.style.zIndex == 2000){
+        //     videoContainer.style.zIndex = -99; 
+        //   }else { 
+        //     videoContainer.style.zIndex = 2000;
+        //   }
+    //  });
+      // }  else {
+      //   console.log("e.data should be 2");
+      }
     }
+ 
     function controlPlay() {
         player.playVideo();
     }
@@ -345,10 +379,18 @@ body, html {
         player.unMute();
     } 
     function changeVideo(el) { 
-        player.loadVideoById(`${el.id}`, () => {
-          videoContainer.style.zIndex = 2000;
-        });
+      videoContainer.style.zIndex = 2000;
+        player.loadVideoById(`${el.id}`);
     }  
+
+    function playFullscreen (){
+  player.playVideo();//won't work on mobile
+  
+  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe)();
+  }
+}
     // let play = document.querySelector('.play');
     // let pause =document.querySelector('.pause');
     // console.log(control);
@@ -370,12 +412,19 @@ body, html {
           controlPause();
           carousel.style.display = "block"; 
           videoContainer.style.zIndex = -99; 
+          // console.log(videoContainer.style.zIndex);
+          // if(videoContainer.style.zIndex = 2000){
+
+          // }
       });
       $('.control.mute').on('click', function() {
           controlMute();
       });
       $('.control.unmute').on('click', function() {
           controlUnmute();
+      });
+      $('.control.fullscreen').on('click', function() {
+          playFullscreen();
       });
       console.log(carousel);
     
@@ -415,7 +464,26 @@ function w3_open() {
 function w3_close() {
     mySidebar.style.display = "none";
 }
-   
+
+
+function changeOrientation() {
+  console.log("orentation changed");
+if(window.innerHeight > window.innerWidth){
+turnDeviceNotification.style.display = "none"
+}else {
+turnDeviceNotification.style.display = "block";  
+}
+}
+function checkOrientation(){
+  console.log("orentation being checked");
+if(window.screen.orientation.type === "portrait-primary"){
+  turnDeviceNotification.style.display = "block"; 
+} else {
+  turnDeviceNotification.style.display = "none"; 
+}
+}
+window.addEventListener("load",  checkOrientation);
+window.addEventListener("orientationchange",  changeOrientation); 
   </script>
 </body>
 </html>
