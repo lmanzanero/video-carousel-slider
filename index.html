@@ -137,16 +137,16 @@ body, html {
   }
   .video-carousel {
     position: fixed;
-    display: none;
+    display: block;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    padding: 8px;
+    padding: 7px;
     z-index: 3000; 
     left: 3%;
     bottom: 7%;
     width:90%;
-    height: 90px;
+    height: 95px;
     background-color: rgba(34, 33, 33, 0.4);
     -webkit-overflow-scrolling: touch;
   } 
@@ -171,15 +171,32 @@ body, html {
  
   .video-carousel .video {
     display: inline-block;
+    margin: 0;
+    align-self: auto;
     min-width: 170px;
-    height: 80px;
-    margin-right: 5px;
-    background-color: blue; 
+    min-height: 85px;
+    margin-right: 5px; 
   }
   .video-carousel .video img{
-      width: 170px;
-      height: 80px;
+      width: 160px;
+      height: 70px;
+      transition: all .5s;
   }
+  .video-carousel .video:hover img{
+      width: 170px; 
+      height: 75px;
+      transition: all .5s;
+  }
+  .video-carousel .video.current-video img{
+      width: 170px; 
+      height: 75px;
+      transition: all .5s;
+  }
+  #playing-video {
+    width: 100vh;
+    height: 100vh;
+  }
+ 
  
 </style>
 </head>
@@ -267,6 +284,9 @@ body, html {
       </div>
     </div>
   </div>
+  <div id="playing-video">
+
+  </div>
   <div id="video-container">
       <div id="player"></div>
   </div>
@@ -276,7 +296,7 @@ body, html {
    
 
   <div class="controllers">
-      <div class="control play">Play</div>
+    <a href="#playing-video"><div class="control play">Play</div></a>
       <div class="control pause">Pause</div>
       <div class="control mute">Mute</div>
       <div class="control unmute">Unmute</div>
@@ -293,13 +313,26 @@ body, html {
     const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
     const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
     let carousel = document.querySelector('.video-carousel');
+     
     let videoContainer = document.querySelector('#video-container');
-    let player; 
+    let player, currentVideo;  
+ 
     
     videoContainer.addEventListener('click', () => {
       console.log("body was clicked");
       videoContainer.style.zIndex = -99;
     });
+
+    document.addEventListener('scroll', () => {
+      videoContainer.style.zIndex = -99;
+    });
+
+    //control play/pause with space bar
+    // document.addEventListener("keydown", (event) => {
+    //     if(event.which == 32){
+    //       controlPlay();  
+    //     }  
+    // }); 
     function onYouTubeIframeAPIReady() {
         console.log('iFrame Ready');
         player = new YT.Player('player', { // player param is dom element id
@@ -324,11 +357,19 @@ body, html {
         console.log(e);
         
         // // will autoplay
-        // e.target.playVideo();
+        e.target.playVideo();
     }
     
     function onPlayerStateChange(e) {
-        console.log('on state change', e);
+        console.log('on state change', e.data);
+        if(e.data == 1){
+          document.addEventListener('scroll', () => {
+            videoContainer.style.zIndex = -99;
+            console.log("scrolling from state");
+          });
+        } else {
+          console.log('video is not playing');
+        }
     }
     function controlPlay() {
         player.playVideo();
@@ -343,9 +384,15 @@ body, html {
         player.unMute();
     } 
     function changeVideo(el) { 
-        player.loadVideoById(`${el.id}`, () => {
-          videoContainer.style.zIndex = 2000;
-        });
+      currentVideo = el.id;
+      console.log(el);
+      if(currentVideo == el.id){
+         el.classList.add("current-video"); 
+      }  else {
+        //TODO: Find a way to resent all videos without this classname or to remove class name
+        el.classList.remove("current-video"); 
+      }
+        player.loadVideoById(`${el.id}`); 
     }  
     // let play = document.querySelector('.play');
     // let pause =document.querySelector('.pause');
@@ -393,8 +440,12 @@ body, html {
              let desc = item.snippet.description.substring(0, 100);
              let vid = item.snippet.resourceId.videoId;  
              console.log(thumb);
+             let videoImg = document.querySelector('.video-carousel .video');
              
-             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><img src="${thumb}"  alt="${desc}"/></div>`;
+             
+             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
+
+             
              });
      });
  }
