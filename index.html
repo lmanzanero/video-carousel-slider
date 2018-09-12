@@ -315,8 +315,8 @@ body, html {
     let carousel = document.querySelector('.video-carousel');
      
     let videoContainer = document.querySelector('#video-container');
-    let player, currentVideo;  
- 
+    let player;  
+     
     
     videoContainer.addEventListener('click', () => {
       console.log("body was clicked");
@@ -336,7 +336,7 @@ body, html {
     function onYouTubeIframeAPIReady() {
         console.log('iFrame Ready');
         player = new YT.Player('player', { // player param is dom element id
-            videoId: 'hK8cjJ8kv8I',
+            videoId: 'NmfzWpp0hMc',
             height: '700px',
           width: '100%',
             playerVars: {
@@ -355,9 +355,35 @@ body, html {
     function onPlayerReady(e) {
         console.log('ready');
         console.log(e);
-        
+        findCurrentVideo();
         // // will autoplay
         e.target.playVideo();
+         
+    }
+    
+    function findCurrentVideo(){
+    //loops over each carousel item to see if it match current video being clicked.
+    const carouselItems = document.querySelectorAll('.video-carousel .video');
+          [...carouselItems].forEach((item) => {
+            let currentVideo;
+            item.addEventListener('click', function(e){
+              console.log("clicked", item.id);
+               carouselItems.forEach(nItem => {
+                 console.log(item.id, nItem);
+                 if(item.id == nItem.id){
+                    //Adds class on carousel item when clicked
+                  nItem.classList.add("current-video");
+                  nItem.classList.add("current-video"); 
+                 } else {
+                  nItem.classList.remove("current-video"); 
+                 }
+               });
+           
+              player.loadVideoById(`${item.id}`); 
+            }); 
+         
+           
+    });
     }
     
     function onPlayerStateChange(e) {
@@ -383,17 +409,20 @@ body, html {
     function controlUnmute() {
         player.unMute();
     } 
-    function changeVideo(el) { 
-      currentVideo = el.id;
-      console.log(el);
-      if(currentVideo == el.id){
-         el.classList.add("current-video"); 
-      }  else {
-        //TODO: Find a way to resent all videos without this classname or to remove class name
-        el.classList.remove("current-video"); 
-      }
-        player.loadVideoById(`${el.id}`); 
-    }  
+
+ 
+    // function changeVideo(el) {   
+        //Changes the video when the video is clicked
+        // player.loadVideoById(`${el.id}`); 
+        // console.log(el, "item was clicked");
+      //    if(item.id == el.id){
+      //    //Adds class on carousel item when clicked
+      //    item.classList.add("current-video"); 
+      // }  else {
+      //   //Removed class on carousel item when clicked
+      //   item.classList.remove("current-video"); 
+      // }
+    // }  
     // let play = document.querySelector('.play');
     // let pause =document.querySelector('.pause');
     // console.log(control);
@@ -422,7 +451,7 @@ body, html {
       $('.control.unmute').on('click', function() {
           controlUnmute();
       });
-      console.log(carousel);
+     
     
      
     var options = {
@@ -443,7 +472,7 @@ body, html {
              let videoImg = document.querySelector('.video-carousel .video');
              
              
-             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
+             carousel.innerHTML += `<div class="video"   id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
 
              
              });
