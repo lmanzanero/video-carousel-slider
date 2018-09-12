@@ -368,6 +368,8 @@ body, html {
             let currentVideo;
             item.addEventListener('click', function(e){
               console.log("clicked", item.id);
+              //NEEDS THIS COPY SO THIS CAN WORK. nItem is so Important for the carousel to work
+              //TODO: Needs to clean up, made more dynamic, and ensure the first video obtains the style.
                carouselItems.forEach(nItem => {
                  console.log(item.id, nItem);
                  if(item.id == nItem.id){
