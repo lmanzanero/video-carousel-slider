@@ -34,6 +34,12 @@ body, html {
 
  
  
+#myNavbar {
+  height: 35px;
+}
+#myNavbar a {
+  padding-top: 5px;
+}
 
 #img01 {
   position: absolute; 
@@ -141,7 +147,7 @@ body, html {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    padding: 7px;
+    padding: 5px 10px 5px 5px;
     z-index: 3000; 
     left: 3%;
     bottom: 7%;
@@ -326,7 +332,7 @@ body, html {
     document.addEventListener('scroll', () => {
       videoContainer.style.zIndex = -99;
     });
-
+    // Need to figure out toggle between pause/play with spacebar
     //control play/pause with space bar
     // document.addEventListener("keydown", (event) => {
     //     if(event.which == 32){
@@ -412,7 +418,7 @@ body, html {
         player.unMute();
     } 
 
- 
+  //TODO: Convert all jquery functions to vanilla Js
     // function changeVideo(el) {   
         //Changes the video when the video is clicked
         // player.loadVideoById(`${el.id}`); 
