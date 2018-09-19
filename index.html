@@ -147,7 +147,7 @@ body, html {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    padding: 5px 10px 5px 5px;
+    padding: 5px 10px 5px 10px;
     z-index: 3000; 
     left: 3%;
     bottom: 7%;
@@ -164,8 +164,8 @@ body, html {
 }
 .video-carousel::-webkit-scrollbar
 {
-	width: 12px;
-  height: 12px;
+	width: 5px;
+  height: 7px;
 	background-color: rgb(150, 148, 148);
 }
 .video-carousel::-webkit-scrollbar-thumb
@@ -174,7 +174,29 @@ body, html {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
 }
- 
+.video-carousel .left-arrow {
+  position: fixed; 
+  z-index: 5000;
+  left: 25px;
+  top: 85%; 
+  border-radius: 5px;
+}
+.video-carousel .right-arrow {
+  position: fixed;
+  z-index: 5000;
+  right: 25px;
+  top: 85%; 
+  border-radius: 5px;
+}
+
+.video-carousel i {
+  font-size: 24px;
+  color: white;
+}
+.video-carousel i:hover {
+  font-size: 28px;
+  color: gray;
+}
   .video-carousel .video {
     display: inline-block;
     margin: 0;
@@ -191,11 +213,13 @@ body, html {
   .video-carousel .video:hover img{
       width: 170px; 
       height: 75px;
+      opacity: 0.5;
       transition: all .5s;
   }
   .video-carousel .video.current-video img{
       width: 170px; 
-      height: 75px;
+      height: 75px; 
+      opacity: 0.5;
       transition: all .5s;
   }
   #playing-video {
@@ -209,7 +233,8 @@ body, html {
 <body> 
     <div class="w3-top">
         <div class="w3-bar w3-white w3-opacity-max w3-card" id="myNavbar">
-          <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes</a>
+          <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
+            <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i></a>
           <!-- Right-sided navbar links -->
           <div class="w3-right w3-hide-small">
             <a href="#about" class="w3-bar-item w3-button">ABOUT</a> 
@@ -296,11 +321,11 @@ body, html {
   <div id="video-container">
       <div id="player"></div>
   </div>
-  <div class="video-carousel">  
-
+  <div class="video-carousel">   
+   
   </div>
    
-
+  
   <div class="controllers">
     <a href="#playing-video"><div class="control play">Play</div></a>
       <div class="control pause">Pause</div>
@@ -317,34 +342,46 @@ body, html {
       
     const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
     const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
-    const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
+    const URL = "https://www.googleapis.com/youtube/v3/playlistItems";
+    let leftArrow = document.querySelector(".left-arrow"); 
+    let rightArrow = document.querySelector(".right-arrow");
     let carousel = document.querySelector('.video-carousel');
      
     let videoContainer = document.querySelector('#video-container');
     let player;  
-     
-    
+  
+    //Puts video carousel slider at the back when clicked
     videoContainer.addEventListener('click', () => {
       console.log("body was clicked");
       videoContainer.style.zIndex = -99;
     });
-
+  //Puts video carousel slider at the back when screen is scrolled
     document.addEventListener('scroll', () => {
       videoContainer.style.zIndex = -99;
     });
-    // Need to figure out toggle between pause/play with spacebar
-    //control play/pause with space bar
-    // document.addEventListener("keydown", (event) => {
-    //     if(event.which == 32){
-    //       controlPlay();  
-    //     }  
-    // }); 
+
+   
+     
+    //Toggles play/pause with space bar
+     function toggleSpaceBarControls(){
+       //Space bar must be outside the function for it to work, not sure why yet...must research.
+      let paused = false;
+      document.addEventListener("keydown", (event) => {
+        //If space bar (number 32) is clicked and pause is
+        //TODO: Need to fix this so that when i click other buttons, it doesn't play the video
+          if(event.which == 32 && paused == false){ 
+            controlPause();
+            paused = true; 
+          } else { 
+            controlPlay();
+            paused = false; 
+          }
+      }); 
+     }
     function onYouTubeIframeAPIReady() {
         console.log('iFrame Ready');
         player = new YT.Player('player', { // player param is dom element id
-            videoId: 'NmfzWpp0hMc',
-            height: '700px',
-          width: '100%',
+            videoId: 'NmfzWpp0hMc', 
             playerVars: {
                 controls: 0,
                 rel: 0,
@@ -361,23 +398,26 @@ body, html {
     function onPlayerReady(e) {
         console.log('ready');
         console.log(e);
+         // // will autoplay
+         e.target.playVideo();
+        toggleSpaceBarControls();
         findCurrentVideo();
-        // // will autoplay
-        e.target.playVideo();
          
     }
     
     function findCurrentVideo(){
     //loops over each carousel item to see if it match current video being clicked.
+    let currentVideo = 0;
     const carouselItems = document.querySelectorAll('.video-carousel .video');
-          [...carouselItems].forEach((item) => {
-            let currentVideo;
+          //Adds class to first div element generated from the loadVids() and youtube api
+           carouselItems[currentVideo].classList.add("current-video");
+          [...carouselItems].forEach((item) => { 
             item.addEventListener('click', function(e){
-              console.log("clicked", item.id);
+              // console.log("clicked", item.id);
               //NEEDS THIS COPY SO THIS CAN WORK. nItem is so Important for the carousel to work
               //TODO: Needs to clean up, made more dynamic, and ensure the first video obtains the style.
                carouselItems.forEach(nItem => {
-                 console.log(item.id, nItem);
+                //  console.log(item.id, nItem);
                  if(item.id == nItem.id){
                     //Adds class on carousel item when clicked
                   nItem.classList.add("current-video");
@@ -388,14 +428,15 @@ body, html {
                });
            
               player.loadVideoById(`${item.id}`); 
-            }); 
-         
-           
-    });
+            });               
+    }); 
+    
     }
+          
     
     function onPlayerStateChange(e) {
         console.log('on state change', e.data);
+        //if videos is playing, add an event lister to hide the video container when scrolling
         if(e.data == 1){
           document.addEventListener('scroll', () => {
             videoContainer.style.zIndex = -99;
@@ -470,20 +511,27 @@ body, html {
  }
  loadVids();
  function loadVids() {
+   //gets videos from youtube's api
      $.getJSON(URL, options, function (data) { 
          $.each(data.items, function (i, item) {
              let thumb = item.snippet.thumbnails.medium.url;
              let title = item.snippet.title;
              let desc = item.snippet.description.substring(0, 100);
              let vid = item.snippet.resourceId.videoId;  
-             console.log(thumb);
+            //  console.log(thumb); 
              let videoImg = document.querySelector('.video-carousel .video');
              
              
              carousel.innerHTML += `<div class="video"   id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
-
              
              });
+
+             leftArrow.addEventListener("click", function() {
+            console.log("left clicked");
+          });
+            rightArrow.addEventListener("click", function() {
+              console.log("right clicked");
+            });
      });
  }
  // Toggle between showing and hiding the sidebar when clicking the menu icon
