@@ -149,7 +149,7 @@ body, html {
     white-space: nowrap;
     padding: 5px 10px 5px 10px;
     z-index: 3000; 
-    left: 3%;
+    left: 4.5%;
     bottom: 7%;
     width:90%;
     height: 95px;
@@ -174,26 +174,26 @@ body, html {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
 }
-.video-carousel .left-arrow {
+#carousel-container .left-arrow {
   position: fixed; 
   z-index: 5000;
   left: 25px;
-  top: 85%; 
+  top: 83%; 
   border-radius: 5px;
-}
-.video-carousel .right-arrow {
+} 
+#carousel-container .right-arrow {
   position: fixed;
   z-index: 5000;
   right: 25px;
-  top: 85%; 
+  top: 83%; 
   border-radius: 5px;
 }
 
-.video-carousel i {
+ #carousel-container i {
   font-size: 24px;
   color: white;
 }
-.video-carousel i:hover {
+#carousel-container i:hover {
   font-size: 28px;
   color: gray;
 }
@@ -233,8 +233,7 @@ body, html {
 <body> 
     <div class="w3-top">
         <div class="w3-bar w3-white w3-opacity-max w3-card" id="myNavbar">
-          <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
-            <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+          <a href="#home" class="w3-bar-item w3-button w3-wide">Justin Hayes</a>
           <!-- Right-sided navbar links -->
           <div class="w3-right w3-hide-small">
             <a href="#about" class="w3-bar-item w3-button">ABOUT</a> 
@@ -321,8 +320,12 @@ body, html {
   <div id="video-container">
       <div id="player"></div>
   </div>
-  <div class="video-carousel">   
-   
+  <div id="carousel-container"> 
+      <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
+      <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i>
+      <div class="video-carousel">   
+      
+      </div>
   </div>
    
   
@@ -365,16 +368,18 @@ body, html {
     //Toggles play/pause with space bar
      function toggleSpaceBarControls(){
        //Space bar must be outside the function for it to work, not sure why yet...must research.
-      let paused = false;
+      let paused = true;
       document.addEventListener("keydown", (event) => {
         //If space bar (number 32) is clicked and pause is
         //TODO: Need to fix this so that when i click other buttons, it doesn't play the video
-          if(event.which == 32 && paused == false){ 
+          if(event.which == 32){ 
+            if(paused){
             controlPause();
-            paused = true; 
-          } else { 
-            controlPlay();
-            paused = false; 
+                paused = false; 
+              } else { 
+                controlPlay();
+                paused = true; 
+              }
           }
       }); 
      }
@@ -405,7 +410,8 @@ body, html {
          
     }
     
-    function findCurrentVideo(){
+    function findCurrentVideo(){ 
+
     //loops over each carousel item to see if it match current video being clicked.
     let currentVideo = 0;
     const carouselItems = document.querySelectorAll('.video-carousel .video');
@@ -430,6 +436,15 @@ body, html {
               player.loadVideoById(`${item.id}`); 
             });               
     }); 
+
+    //TODO: Get left arrow and right arrow to take you to next/previous videos from the carousel
+    leftArrow.addEventListener("click", function() {
+           let videoNum = carouselItems.length;  
+           
+      });
+   rightArrow.addEventListener("click", function() {
+      console.log("right clicked");
+      });
     
     }
           
@@ -514,24 +529,18 @@ body, html {
    //gets videos from youtube's api
      $.getJSON(URL, options, function (data) { 
          $.each(data.items, function (i, item) {
+             
+             
              let thumb = item.snippet.thumbnails.medium.url;
              let title = item.snippet.title;
              let desc = item.snippet.description.substring(0, 100);
              let vid = item.snippet.resourceId.videoId;  
             //  console.log(thumb); 
              let videoImg = document.querySelector('.video-carousel .video');
-             
-             
+          
              carousel.innerHTML += `<div class="video"   id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
              
              });
-
-             leftArrow.addEventListener("click", function() {
-            console.log("left clicked");
-          });
-            rightArrow.addEventListener("click", function() {
-              console.log("right clicked");
-            });
      });
  }
  // Toggle between showing and hiding the sidebar when clicking the menu icon
