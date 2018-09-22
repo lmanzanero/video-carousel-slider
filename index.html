@@ -34,6 +34,12 @@ body, html {
 
  
  
+#myNavbar {
+  height: 35px;
+}
+#myNavbar a {
+  padding-top: 5px;
+}
 
 #img01 {
   position: absolute; 
@@ -137,16 +143,16 @@ body, html {
   }
   .video-carousel {
     position: fixed;
-    display: none;
+    display: block;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    padding: 8px;
+    padding: 5px 10px 5px 10px;
     z-index: 3000; 
-    left: 3%;
+    left: 4.5%;
     bottom: 7%;
     width:90%;
-    height: 90px;
+    height: 95px;
     background-color: rgba(34, 33, 33, 0.4);
     -webkit-overflow-scrolling: touch;
   } 
@@ -158,8 +164,8 @@ body, html {
 }
 .video-carousel::-webkit-scrollbar
 {
-	width: 12px;
-  height: 12px;
+	width: 5px;
+  height: 7px;
 	background-color: rgb(150, 148, 148);
 }
 .video-carousel::-webkit-scrollbar-thumb
@@ -168,32 +174,60 @@ body, html {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
 }
- 
-  .video-carousel .video {
-    display: inline-block;
-    min-width: 170px;
-    height: 80px;
-    margin-right: 5px;
-    background-color: blue; 
-  }
-  .video-carousel .video img{
-      width: 170px;
-      height: 80px;
-  }
-  .turnDeviceNotification {
+#carousel-container .left-arrow {
+  position: fixed; 
+  z-index: 5000;
+  left: 25px;
+  top: 83%; 
+  border-radius: 5px;
+} 
+#carousel-container .right-arrow {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  top: 0;
-  left: 0;
+  z-index: 5000;
+  right: 25px;
+  top: 83%; 
+  border-radius: 5px;
 }
 
-.turnDeviceNotification img { 
-  z-index: 5000;
-  width: 100%;  
-  display: block !important;
+ #carousel-container i {
+  font-size: 24px;
+  color: white;
 }
+#carousel-container i:hover {
+  font-size: 28px;
+  color: gray;
+}
+  .video-carousel .video {
+    display: inline-block;
+    margin: 0;
+    align-self: auto;
+    min-width: 170px;
+    min-height: 85px;
+    margin-right: 5px; 
+  }
+  .video-carousel .video img{
+      width: 160px;
+      height: 70px;
+      transition: all .5s;
+  }
+  .video-carousel .video:hover img{
+      width: 170px; 
+      height: 75px;
+      opacity: 0.5;
+      transition: all .5s;
+  }
+  .video-carousel .video.current-video img{
+      width: 170px; 
+      height: 75px; 
+      opacity: 0.5;
+      transition: all .5s;
+  }
+  #playing-video {
+    width: 100vh;
+    height: 100vh;
+  }
+ 
+ 
 </style>
 </head>
 <body> 
@@ -280,24 +314,28 @@ body, html {
       </div>
     </div>
   </div>
+  <div id="playing-video">
+
+  </div>
   <div id="video-container">
       <div id="player"></div>
   </div>
-  <div class="video-carousel">  
-
+  <div id="carousel-container"> 
+      <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
+      <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i>
+      <div class="video-carousel">   
+      
+      </div>
   </div>
    
-
+  
   <div class="controllers">
-      <div class="control play">Play</div>
+    <a href="#playing-video"><div class="control play">Play</div></a>
       <div class="control pause">Pause</div>
       <div class="control mute">Mute</div>
       <div class="control unmute">Unmute</div>
-      <div class="control fullscreen">Full Screen</div>
+      <div class="control unmute">Full Screen</div>
   </div> 
-  <div class="turnDeviceNotification">
-    <img src="imgs/turn-device.png" alt="turn-device">
-  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
   
@@ -308,29 +346,66 @@ body, html {
       
     const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
     const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
-    const URL = "https://www.googleapis.com/youtube/v3/playlistItems"; 
-    const turnDeviceNotification = document.querySelector('.turnDeviceNotification')
+    const URL = "https://www.googleapis.com/youtube/v3/playlistItems";
+    let leftArrow = document.querySelector(".left-arrow"); 
+    let rightArrow = document.querySelector(".right-arrow");
     let carousel = document.querySelector('.video-carousel');
+     
     let videoContainer = document.querySelector('#video-container');
-    let player, iframe; 
-    let toggle = videoContainer.style.zIndex;
-    let fullPlayer = document.querySelector('#player');
-    
- 
- 
+    let player;  
+  
+    //Puts video carousel slider at the back when clicked
+    videoContainer.addEventListener('click', () => {
+      console.log("body was clicked");
+      videoContainer.style.zIndex = -99;
+    });
+  //Puts video carousel slider at the back when screen is scrolled
+    document.addEventListener('scroll', () => {
+      videoContainer.style.zIndex = -99;
+    });
+
+   
+     
+    //Toggles play/pause with space bar
+     function videoKeyDownControls(){
+       //Space bar must be outside the function for it to work, not sure why yet...must research.
+      let paused = true;
+      document.addEventListener("keydown", (event) => {
+        //If space bar (number 32) is clicked and pause is
+        //TODO: Need to fix this so that when i click other buttons, it doesn't play the video
+          if(event.which == 32){
+            console.log("Space bar was clicked"); 
+            if(paused){
+            controlPause();
+                paused = false; 
+              } else { 
+                controlPlay();
+                paused = true; 
+              }
+            
+          } else if(event.which == 37){
+                //left
+                console.log("left arrow was clicked");
+                leftArrow.click();
+          } else if(event.which == 39){
+            //right
+            console.log("left arrow was clicked");
+            rightArrow.click();
+          } else {
+            console.log(event.which);
+          }
+      }); 
+     }
     function onYouTubeIframeAPIReady() {
         console.log('iFrame Ready');
         player = new YT.Player('player', { // player param is dom element id
-            videoId: 'NmfzWpp0hMc',
-            height: '700px',
-          width: '100%',
+            videoId: 'NmfzWpp0hMc', 
             playerVars: {
                 controls: 0,
                 rel: 0,
                 showinfo: 0,
                 modestbranding: true, // modestbranding conflicts with showinfo
-                autoplay: 0,
-                allowfullscreen: 1
+                autoplay: 0
             },
             events: {
                 'onReady': onPlayerReady,
@@ -341,33 +416,77 @@ body, html {
     function onPlayerReady(e) {
         console.log('ready');
         console.log(e);
-        
-        // // will autoplay
-        // e.target.playVideo();
+         // // will autoplay
+         e.target.playVideo();
+        videoKeyDownControls();
+        findCurrentVideo();
+         
     }
     
-    function onPlayerStateChange(e) {
-        console.log('on state change', e.data); 
-         let stateChange = e.data;
-      if(stateChange = 1){  
-        videoContainer.addEventListener('click', function(){
-          videoContainer.style.zIndex = -99;
-        });
-        // document.addEventListener('click', function(){  
-        //   //must have a copy of the zindex from videoContainer element to work!!!!
-          
-        //   console.log("toggle is ", toggle);
-        //   if(videoContainer.style.zIndex == 2000){
-        //     videoContainer.style.zIndex = -99; 
-        //   }else { 
-        //     videoContainer.style.zIndex = 2000;
-        //   }
-    //  });
-      // }  else {
-      //   console.log("e.data should be 2");
-      }
-    }
+    function findCurrentVideo(){ 
+
+    //loops over each carousel item to see if it match current video being clicked.
+    let currentVideo = 0;
+    const carouselItems = document.querySelectorAll('.video-carousel .video');
+          //Adds class to first div element generated from the loadVids() and youtube api
+           carouselItems[currentVideo].classList.add("current-video");
+          [...carouselItems].forEach((item) => { 
+            item.addEventListener('click', function(e){
+              // console.log("clicked", item.id);
+              //NEEDS THIS COPY SO THIS CAN WORK. nItem is so Important for the carousel to work
+              //TODO: Needs to clean up, made more dynamic, and ensure the first video obtains the style.
+               carouselItems.forEach(nItem => {
+                //  console.log(item.id, nItem);
+                 if(item.id == nItem.id){
+                    //Adds class on carousel item when clicked
+                  nItem.classList.add("current-video");
+                  nItem.classList.add("current-video"); 
+                 } else {
+                  nItem.classList.remove("current-video"); 
+                 }
+               });
+           
+              player.loadVideoById(`${item.id}`); 
+            });               
+    }); 
+
  
+    //TODO: Get left arrow and right arrow to take you to next/previous videos from the carousel
+    function rightArrowChange(){
+        if(currentVideo === 0){
+              currentVideo = carouselItems.length;
+            }
+              currentVideo--;
+            player.loadVideoById(`${carouselItems[currentVideo].id}`);
+            carouselItems[currentVideo].classList.add("current-video"); 
+        }
+        function leftArrowChange(){
+          if(currentVideo === carouselItems.length - 1){
+                    currentVideo = 0;
+                  }
+            currentVideo++;
+            console.log("right", currentVideo);
+              player.loadVideoById(`${carouselItems[currentVideo].id}`);
+              carouselItems[currentVideo].classList.add("current-video");
+          }       
+       leftArrow.addEventListener("click", rightArrowChange);
+   
+       rightArrow.addEventListener("click", leftArrowChange);
+    }
+          
+    
+    function onPlayerStateChange(e) {
+        console.log('on state change', e.data);
+        //if videos is playing, add an event lister to hide the video container when scrolling
+        if(e.data == 1){
+          document.addEventListener('scroll', () => {
+            videoContainer.style.zIndex = -99;
+            console.log("scrolling from state");
+          });
+        } else {
+          console.log('video is not playing');
+        }
+    }
     function controlPlay() {
         player.playVideo();
     }
@@ -380,19 +499,20 @@ body, html {
     function controlUnmute() {
         player.unMute();
     } 
-    function changeVideo(el) { 
-      videoContainer.style.zIndex = 2000;
-        player.loadVideoById(`${el.id}`);
-    }  
 
-    function playFullscreen (){
-  player.playVideo();//won't work on mobile
-  
-  let requestFullScreen = fullPlayer.requestFullScreen || fullPlayer.mozRequestFullScreen || fullPlayer.webkitRequestFullScreen;
-  if (requestFullScreen) {
-    requestFullScreen.bind(fullPlayer)();
-  }
-}
+  //TODO: Convert all jquery functions to vanilla Js
+    // function changeVideo(el) {   
+        //Changes the video when the video is clicked
+        // player.loadVideoById(`${el.id}`); 
+        // console.log(el, "item was clicked");
+      //    if(item.id == el.id){
+      //    //Adds class on carousel item when clicked
+      //    item.classList.add("current-video"); 
+      // }  else {
+      //   //Removed class on carousel item when clicked
+      //   item.classList.remove("current-video"); 
+      // }
+    // }  
     // let play = document.querySelector('.play');
     // let pause =document.querySelector('.pause');
     // console.log(control);
@@ -414,10 +534,6 @@ body, html {
           controlPause();
           carousel.style.display = "block"; 
           videoContainer.style.zIndex = -99; 
-          // console.log(videoContainer.style.zIndex);
-          // if(videoContainer.style.zIndex = 2000){
-
-          // }
       });
       $('.control.mute').on('click', function() {
           controlMute();
@@ -425,10 +541,7 @@ body, html {
       $('.control.unmute').on('click', function() {
           controlUnmute();
       });
-      $('.control.fullscreen').on('click', function() {
-        playFullscreen();
-      });
-      console.log(carousel);
+     
     
      
     var options = {
@@ -439,15 +552,20 @@ body, html {
  }
  loadVids();
  function loadVids() {
+   //gets videos from youtube's api
      $.getJSON(URL, options, function (data) { 
          $.each(data.items, function (i, item) {
+             
+             
              let thumb = item.snippet.thumbnails.medium.url;
              let title = item.snippet.title;
              let desc = item.snippet.description.substring(0, 100);
              let vid = item.snippet.resourceId.videoId;  
-             console.log(thumb);
+            //  console.log(thumb); 
+             let videoImg = document.querySelector('.video-carousel .video');
+          
+             carousel.innerHTML += `<div class="video"   id="${vid}"><a href="#playing-video"><img src="${thumb}"  alt="${desc}"/></a></div>`;
              
-             carousel.innerHTML += `<div class="video" onclick="changeVideo(this)" id="${vid}"><img src="${thumb}"  alt="${desc}"/></div>`;
              });
      });
  }
@@ -466,26 +584,7 @@ function w3_open() {
 function w3_close() {
     mySidebar.style.display = "none";
 }
-
-
-function changeOrientation() {
-  console.log("orentation changed");
-if(window.innerHeight > window.innerWidth){
-turnDeviceNotification.style.display = "none"
-}else {
-turnDeviceNotification.style.display = "block";  
-}
-}
-function checkOrientation(){
-  console.log("orentation being checked");
-if(window.screen.orientation.type === "portrait-primary"){
-  turnDeviceNotification.style.display = "block"; 
-} else {
-  turnDeviceNotification.style.display = "none"; 
-}
-}
-window.addEventListener("load",  checkOrientation);
-window.addEventListener("orientationchange",  changeOrientation); 
+   
   </script>
 </body>
 </html>
