@@ -334,6 +334,7 @@ body, html {
       <div class="control pause">Pause</div>
       <div class="control mute">Mute</div>
       <div class="control unmute">Unmute</div>
+      <div class="control unmute">Full Screen</div>
   </div> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
@@ -366,13 +367,14 @@ body, html {
    
      
     //Toggles play/pause with space bar
-     function toggleSpaceBarControls(){
+     function videoKeyDownControls(){
        //Space bar must be outside the function for it to work, not sure why yet...must research.
       let paused = true;
       document.addEventListener("keydown", (event) => {
         //If space bar (number 32) is clicked and pause is
         //TODO: Need to fix this so that when i click other buttons, it doesn't play the video
-          if(event.which == 32){ 
+          if(event.which == 32){
+            console.log("Space bar was clicked"); 
             if(paused){
             controlPause();
                 paused = false; 
@@ -380,6 +382,17 @@ body, html {
                 controlPlay();
                 paused = true; 
               }
+            
+          } else if(event.which == 37){
+                //left
+                console.log("left arrow was clicked");
+                leftArrow.click();
+          } else if(event.which == 39){
+            //right
+            console.log("left arrow was clicked");
+            rightArrow.click();
+          } else {
+            console.log(event.which);
           }
       }); 
      }
@@ -405,7 +418,7 @@ body, html {
         console.log(e);
          // // will autoplay
          e.target.playVideo();
-        toggleSpaceBarControls();
+        videoKeyDownControls();
         findCurrentVideo();
          
     }
@@ -437,15 +450,28 @@ body, html {
             });               
     }); 
 
+ 
     //TODO: Get left arrow and right arrow to take you to next/previous videos from the carousel
-    leftArrow.addEventListener("click", function() {
-           let videoNum = carouselItems.length;  
-           
-      });
-   rightArrow.addEventListener("click", function() {
-      console.log("right clicked");
-      });
-    
+    function rightArrowChange(){
+        if(currentVideo === 0){
+              currentVideo = carouselItems.length;
+            }
+              currentVideo--;
+            player.loadVideoById(`${carouselItems[currentVideo].id}`);
+            carouselItems[currentVideo].classList.add("current-video"); 
+        }
+        function leftArrowChange(){
+          if(currentVideo === carouselItems.length - 1){
+                    currentVideo = 0;
+                  }
+            currentVideo++;
+            console.log("right", currentVideo);
+              player.loadVideoById(`${carouselItems[currentVideo].id}`);
+              carouselItems[currentVideo].classList.add("current-video");
+          }       
+       leftArrow.addEventListener("click", rightArrowChange);
+   
+       rightArrow.addEventListener("click", leftArrowChange);
     }
           
     
