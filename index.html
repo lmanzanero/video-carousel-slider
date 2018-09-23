@@ -330,11 +330,9 @@ body, html {
    
   
   <div class="controllers">
-    <a href="#playing-video"><div class="control play">Play</div></a>
-      <div class="control pause">Pause</div>
-      <div class="control mute">Mute</div>
-      <div class="control unmute">Unmute</div> 
-      <div class="control fullscreen">Full Screen</div>
+    <a href="#playing-video"><div class="control toggle">Pause</div></a>
+      <div class="control togglesound">Mute</div> 
+      <div class="control fullscreen">Full</div>
   </div> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
@@ -353,6 +351,8 @@ body, html {
      
     let videoContainer = document.querySelector('#video-container');
     let player;  
+    let paused = true;
+    let sound = true;
   
     //Puts video carousel slider at the back when clicked
     videoContainer.addEventListener('click', () => {
@@ -369,17 +369,10 @@ body, html {
     //Toggles play/pause with space bar and left/right arrow controls
      function videoKeyDownControls(){
        //Space bar must be outside the function for it to work, not sure why yet...must research.
-      let paused = true;
       window.addEventListener("keydown", (event) => {
         //If space bar (number 32) is clicked and pause is 
           if(event.which == 32){ 
-            if(paused){
-            controlPause();
-                paused = false; 
-              } else { 
-                controlPlay();
-                paused = true; 
-              }
+             togglePlayPause();
           } else if(event.which == 37){
             //left arrow clicked 
                 leftArrow.click();
@@ -475,7 +468,7 @@ body, html {
             console.log("scrolling from state");
           });
         } else {
-          console.log('switching to next video');
+          console.log('switching to next video'); 
         }
     }
     function controlPlay() {
@@ -516,8 +509,32 @@ body, html {
       // $('.control').on('click', function(e){
       //      console.log(e.preventDefault());
       // });
-
- 
+      function toggleSound(){ 
+        if(sound){  
+          document.querySelector('.togglesound').innerHTML = "UnMute";
+          controlMute();
+          sound = false;
+        } else {
+          console.log("not Playing"); 
+          document.querySelector('.togglesound').innerHTML = "Mute";
+          controlUnmute();
+          sound = true;
+        }
+      }
+       function togglePlayPause(){ 
+        if(paused){  
+          document.querySelector('.toggle').innerHTML = "Play";
+          controlPause();
+          paused = false;
+        } else {
+          console.log("not Playing"); 
+          document.querySelector('.toggle').innerHTML = "Pause";
+          controlPlay();
+          paused = true;
+        }
+      }
+      document.querySelector('.control.toggle').addEventListener('click', togglePlayPause);
+      document.querySelector('.control.togglesound').addEventListener('click', toggleSound);
       function playFullscreen (){
         let iframe = document.querySelector('iframe'); 
         player.playVideo();//won't work on mobile 
@@ -527,27 +544,7 @@ body, html {
         }
       }
       document.querySelector('.control.fullscreen').addEventListener('click', playFullscreen);
-
-
-      $('.control.play').on('click', function() {
-          controlPlay();
-          carousel.style.display = "none"; 
-          videoContainer.style.zIndex = 2000;
-      });
-      $('.control.pause').on('click', function() {
-          controlPause();
-          carousel.style.display = "block"; 
-          videoContainer.style.zIndex = -99; 
-      });
-      $('.control.mute').on('click', function() {
-          controlMute();
-      });
-      $('.control.unmute').on('click', function() {
-          controlUnmute();
-      });
-     
-    
-     
+   
     var options = {
      part: 'snippet',
      key: ApiKey,
