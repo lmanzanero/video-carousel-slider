@@ -366,7 +366,7 @@ body, html {
 
    
      
-    //Toggles play/pause with space bar
+    //Toggles play/pause with space bar and left/right arrow controls
      function videoKeyDownControls(){
        //Space bar must be outside the function for it to work, not sure why yet...must research.
       let paused = true;
@@ -382,14 +382,12 @@ body, html {
                 controlPlay();
                 paused = true; 
               }
-            
           } else if(event.which == 37){
-                //left
+            //left arrow clicked
                 console.log("left arrow was clicked");
                 leftArrow.click();
           } else if(event.which == 39){
-            //right
-            console.log("left arrow was clicked");
+            //right arrow clicked
             rightArrow.click();
           } else {
             console.log(event.which);
@@ -424,50 +422,46 @@ body, html {
     }
     
     function findCurrentVideo(){ 
-
-    //loops over each carousel item to see if it match current video being clicked.
-    let currentVideo = 0;
-    const carouselItems = document.querySelectorAll('.video-carousel .video');
+          //loops over each carousel item to see if it match current video being clicked.
+         let currentVideo = 0;
+        const carouselItems = document.querySelectorAll('.video-carousel .video');
           //Adds class to first div element generated from the loadVids() and youtube api
            carouselItems[currentVideo].classList.add("current-video");
-          [...carouselItems].forEach((item) => { 
+          [...carouselItems].forEach((item, i) => { 
             item.addEventListener('click', function(e){
-              // console.log("clicked", item.id);
-              //NEEDS THIS COPY SO THIS CAN WORK. nItem is so Important for the carousel to work
-              //TODO: Needs to clean up, made more dynamic, and ensure the first video obtains the style.
-               carouselItems.forEach(nItem => {
-                //  console.log(item.id, nItem);
-                 if(item.id == nItem.id){
-                    //Adds class on carousel item when clicked
-                  nItem.classList.add("current-video");
-                  nItem.classList.add("current-video"); 
-                 } else {
-                  nItem.classList.remove("current-video"); 
-                 }
-               });
-           
+              // ensures that current video is resetted and represented correctly when clicked.
+              currentVideo = i; 
+              //toggles the style when image is clicked
+              toggleVideoStyles();
               player.loadVideoById(`${item.id}`); 
             });               
     }); 
-
- 
+      //toggles video styles, removes and adds current-video class on current item
+      function toggleVideoStyles(){
+        carouselItems.forEach((item) => {
+              if(carouselItems[currentVideo].id == item.id){
+                item.classList.add("current-video");
+              } else {
+                item.classList.remove("current-video");
+              }
+            });
+      }
     //TODO: Get left arrow and right arrow to take you to next/previous videos from the carousel
     function rightArrowChange(){
         if(currentVideo === 0){
               currentVideo = carouselItems.length;
             }
               currentVideo--;
-            player.loadVideoById(`${carouselItems[currentVideo].id}`);
-            carouselItems[currentVideo].classList.add("current-video"); 
+            player.loadVideoById(`${carouselItems[currentVideo].id}`);   
+            toggleVideoStyles(); 
         }
         function leftArrowChange(){
           if(currentVideo === carouselItems.length - 1){
                     currentVideo = 0;
                   }
-            currentVideo++;
-            console.log("right", currentVideo);
+            currentVideo++; 
               player.loadVideoById(`${carouselItems[currentVideo].id}`);
-              carouselItems[currentVideo].classList.add("current-video");
+            toggleVideoStyles();   
           }       
        leftArrow.addEventListener("click", rightArrowChange);
    
