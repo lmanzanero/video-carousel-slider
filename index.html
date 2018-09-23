@@ -333,8 +333,8 @@ body, html {
     <a href="#playing-video"><div class="control play">Play</div></a>
       <div class="control pause">Pause</div>
       <div class="control mute">Mute</div>
-      <div class="control unmute">Unmute</div>
-      <div class="control unmute">Full Screen</div>
+      <div class="control unmute">Unmute</div> 
+      <div class="control fullscreen">Full Screen</div>
   </div> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
@@ -370,11 +370,9 @@ body, html {
      function videoKeyDownControls(){
        //Space bar must be outside the function for it to work, not sure why yet...must research.
       let paused = true;
-      document.addEventListener("keydown", (event) => {
-        //If space bar (number 32) is clicked and pause is
-        //TODO: Need to fix this so that when i click other buttons, it doesn't play the video
-          if(event.which == 32){
-            console.log("Space bar was clicked"); 
+      window.addEventListener("keydown", (event) => {
+        //If space bar (number 32) is clicked and pause is 
+          if(event.which == 32){ 
             if(paused){
             controlPause();
                 paused = false; 
@@ -383,8 +381,7 @@ body, html {
                 paused = true; 
               }
           } else if(event.which == 37){
-            //left arrow clicked
-                console.log("left arrow was clicked");
+            //left arrow clicked 
                 leftArrow.click();
           } else if(event.which == 39){
             //right arrow clicked
@@ -478,7 +475,7 @@ body, html {
             console.log("scrolling from state");
           });
         } else {
-          console.log('video is not playing');
+          console.log('switching to next video');
         }
     }
     function controlPlay() {
@@ -519,6 +516,19 @@ body, html {
       // $('.control').on('click', function(e){
       //      console.log(e.preventDefault());
       // });
+
+ 
+      function playFullscreen (){
+        let iframe = document.querySelector('iframe'); 
+        player.playVideo();//won't work on mobile 
+        var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+        if (requestFullScreen) {
+          requestFullScreen.bind(iframe)(); 
+        }
+      }
+      document.querySelector('.control.fullscreen').addEventListener('click', playFullscreen);
+
+
       $('.control.play').on('click', function() {
           controlPlay();
           carousel.style.display = "none"; 
@@ -563,6 +573,8 @@ body, html {
              });
      });
  }
+
+
  // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
 
