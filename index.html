@@ -18,6 +18,7 @@
 body, html {
     height: 100%;
     line-height: 1.8;
+    color: #ffffff;
 }
 
  
@@ -114,33 +115,22 @@ body, html {
     justify-content: center;
     width: 100%;
     height: 40px;
-    background-color: rgba(34, 33, 33, 0.1);
+    background-color: rgba(34, 33, 33, 0.3);
     align-content: center;
     text-align: center;
     z-index: 3000;
     left: 0;
     bottom: 0;
   }
-  .controllers .control {
-    opacity: 0.3;
+  .controllers .control img {
+    opacity: 0.4;
+    width: 45px; 
+    height: 35px;  
   }
-   .controllers .control:hover {
+   .controllers .control img:hover {
     opacity: 1;
   }
-  
-  .controllers:hover{
-    background-color: rgba(34, 33, 33, 0.4);
-  }
-  .controllers .control {
-    width: 50px;
-    background: cadetblue;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 4px;
-  }
-  .controllers .control:hover {
-    background-color: cyan; 
-  }
+ 
   .video-carousel {
     position: fixed;
     display: block;
@@ -227,6 +217,18 @@ body, html {
     height: 100vh;
   }
  
+
+.turnDeviceNotification img {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; 
+  height: 100%;  
+  margin-bottom: 30%;
+  margin: 0;  
+  display: none;
+  z-index: 10000;
+}
  
 </style>
 </head>
@@ -321,8 +323,8 @@ body, html {
       <div id="player"></div>
   </div>
   <div id="carousel-container"> 
-      <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
-      <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i>
+      <!-- <i class="left-arrow fa fa-arrow-circle-left" aria-hidden="true"></i>
+      <i class="right-arrow fa fa-arrow-circle-right" aria-hidden="true"></i> -->
       <div class="video-carousel">   
       
       </div>
@@ -330,10 +332,15 @@ body, html {
    
   
   <div class="controllers">
-    <a href="#playing-video"><div class="control toggle">Pause</div></a>
+      <div class="control left-arrow"><img src="imgs/w.png" /></div> 
+    <a href="#playing-video"><div class="control toggle"><img src="imgs/p2.png" /></div></a>
+      <div class="control right-arrow"><img src="imgs/e.png" /></div> 
       <div class="control togglesound">Mute</div> 
-      <div class="control fullscreen">Full</div>
+      <div class="control fullscreen"><i class="fas fa-arrows-alt" aria-hidden="true"></i></div>
   </div> 
+  <div class="turnDeviceNotification">
+      <img src="/imgs/mobi.png"/>
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
   
@@ -345,6 +352,7 @@ body, html {
     const ApiKey = "AIzaSyBixjWBDyoxDLLzEyCENCBT_vOHWKl7oXk";
     const playlistId = "PL0e4x1yOeQGK3U4r2zRlDdT_OW4J1LaGu";
     const URL = "https://www.googleapis.com/youtube/v3/playlistItems";
+    const turnDeviceNotification = document.querySelector('.turnDeviceNotification img');
     let leftArrow = document.querySelector(".left-arrow"); 
     let rightArrow = document.querySelector(".right-arrow");
     let carousel = document.querySelector('.video-carousel');
@@ -373,6 +381,7 @@ body, html {
         //If space bar (number 32) is clicked and pause is 
           if(event.which == 32){ 
              togglePlayPause();
+             event.preventDefault(); 
           } else if(event.which == 37){
             //left arrow clicked 
                 leftArrow.click();
@@ -393,7 +402,7 @@ body, html {
                 rel: 0,
                 showinfo: 0,
                 modestbranding: true, // modestbranding conflicts with showinfo
-                autoplay: 0
+                autoplay: 0, 
             },
             events: {
                 'onReady': onPlayerReady,
@@ -523,12 +532,12 @@ body, html {
       }
        function togglePlayPause(){ 
         if(paused){  
-          document.querySelector('.toggle').innerHTML = "Play";
+          document.querySelector('.toggle').innerHTML = `<img src="imgs/p.png" />`; 
           controlPause();
           paused = false;
         } else {
           console.log("not Playing"); 
-          document.querySelector('.toggle').innerHTML = "Pause";
+          document.querySelector('.toggle').innerHTML = `<img src="imgs/p2.png" />`;
           controlPlay();
           paused = true;
         }
@@ -587,7 +596,28 @@ function w3_open() {
 function w3_close() {
     mySidebar.style.display = "none";
 }
-   
+  
+
+//chec orienttion
+function changeOrientation() {
+  console.log("orentition chnge");
+  if(window.innerHeight > window.innerWidth){
+      turnDeviceNotification.style.display = "none";
+    }else {
+      turnDeviceNotification.style.display = "block";  
+    }
+  }
+  function checkOrientation(){
+    console.log("orentition chec");
+    if(window.screen.orientation.type === "portrait-primary"){
+      turnDeviceNotification.style.display = "block"; 
+    } else {
+      turnDeviceNotification.style.display = "none"; 
+    }
+}
+
+window.addEventListener("load",  checkOrientation);
+window.addEventListener("orientationchange",  changeOrientation); 
   </script>
 </body>
 </html>
