@@ -130,40 +130,46 @@ body, html {
    .controllers .control img:hover {
     opacity: 1;
   }
+  /* position: fixed;
+    display: block;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 5px 10px 5px 10px;
+    z-index: 3000; 
+    left: 4.5%;
+    bottom: 7%;
+    width:90%;
+    height: 95px;
+    background-color: rgba(34, 33, 33, 0.4);
+    -webkit-overflow-scrolling: touch; */
 
-section {
-  padding: 4em;
+.carousel-container {
+  position: fixed;
+  bottom: 35px;  
+  margin: 0;
+  padding: 0px 50px;
+  width: 100%; 
 }
-
-section h2 {
-  font-size: 2em;
-  margin-bottom: 0;
-}
-
-section p {
-  font-size: 1.3em;
-  margin: 0 0 2em 0;
-}
-
-section .gallery {
+.carousel-container .gallery {
   position: relative; 
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
 }
 
-section .gallery figure {
+.carousel-container .gallery figure {
   display: inline-block;
   width: 230px;
   height: 120px;
   margin: 3px;
   overflow: hidden; 
-  position: relative; 
+  position: relative;  
   -webkit-transition: background-color .5s;
   transition: background-color .5s;
 }
 
-section .gallery figure img {
+.carousel-container .gallery figure img {
   width: calc(100% + 30px);
   opacity: .7;
   -webkit-transform: translate3d(0, -10px, 0) scale(1);
@@ -172,7 +178,7 @@ section .gallery figure img {
   transition: all .5s;
 }
 
-section .gallery figure figcaption {
+.carousel-container .gallery figure figcaption {
   position: absolute;
   padding: 0.2em 1em; 
   top: 0;
@@ -180,7 +186,7 @@ section .gallery figure figcaption {
   text-align: left;
 }
 
-section .gallery figure figcaption h4 {
+.carousel-container .gallery figure figcaption h4 {
   font-weight: bold; 
   font-size: 0.5em;
   text-transform: uppercase; 
@@ -189,17 +195,17 @@ section .gallery figure figcaption h4 {
   padding: .2em .2em;
 }
 
-section .gallery figure figcaption .additional {
+.carousel-container .gallery figure figcaption .additional {
   font-family: 'Montserrat';
 }
 <!-- 
-section .gallery figure figcaption .additional p {
+.carousel-container .gallery figure figcaption .additional p {
   margin-bottom: 10px;
   overflow: wrap;
   font-size: 0.8em;  
 } -->
 
-section .gallery figure figcaption .additional a {
+.carousel-container .gallery figure figcaption .additional a {
   display: inline-block;
   background: white;
   text-transform: uppercase;
@@ -211,7 +217,7 @@ section .gallery figure figcaption .additional a {
   border-radius: 4px;
 }
 
-section .gallery figure figcaption .additional a:last-child {
+.carousel-container .gallery figure figcaption .additional a:last-child {
   background: none;
   border: 1px solid white;
   color: white;
@@ -219,7 +225,7 @@ section .gallery figure figcaption .additional a:last-child {
 }
 
  
-section .gallery figure .additional {
+.carousel-container .gallery figure .additional {
   opacity: 0;
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
@@ -227,27 +233,27 @@ section .gallery figure .additional {
   transition: all .5s;
 }
 
-section .gallery figure:hover {
+.carousel-container .gallery figure:hover {
   background: black;
 }
 
-section .gallery figure:first-child {
+.carousel-container .gallery figure:first-child {
   margin-left: 0;
 }
 
-section .gallery figure:hover img {
+.carousel-container .gallery figure:hover img {
   -webkit-transform: translate3d(0, 0, 0) scale(1);
           transform: translate3d(0, 0, 0) scale(1);
   opacity: .4;
 }
 
-section .gallery figure:hover .additional {
+.carousel-container .gallery figure:hover .additional {
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
 
-section .gallery figure:hover figcaption::before {
+.carousel-container .gallery figure:hover figcaption::before {
   -webkit-transform: rotateZ(-45deg) translate3d(0, 0, 0);
           transform: rotateZ(-45deg) translate3d(0, 0, 0);
 }
@@ -357,10 +363,10 @@ section .gallery figure:hover figcaption::before {
   <div id="video-container">
       <div id="player"></div>
   </div>
-  <section> 
-      <div class="gallery">    
+  <section class="carousel-container"> 
+        <div class="gallery">    
  
-      </div>
+        </div>
   </section>
    
   
