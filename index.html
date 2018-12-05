@@ -122,6 +122,19 @@ body, html {
     left: 0;
     bottom: 0;
   }
+
+  .controllers .more-videos{
+    position: absolute;
+    margin: 5px 0 0 0;
+    left: 20px;
+    background: #77CDF1
+  }
+
+  .controllers .more-videos:hover {
+    color: #77cdf1;
+    background: #fff;
+    font-weight: bold;
+  }
   .controllers .control img {
     opacity: 0.4;
     width: 45px; 
@@ -162,7 +175,7 @@ body, html {
   display: inline-block;
   width: 230px;
   height: 120px;
-  margin: 3px;
+  margin: 3px; 
   overflow: hidden; 
   position: relative;  
   -webkit-transition: background-color .5s;
@@ -170,7 +183,7 @@ body, html {
 }
 
 .carousel-container .gallery figure img {
-  width: calc(100% + 30px);
+  width: calc(100% + 10px);
   opacity: .7;
   -webkit-transform: translate3d(0, -10px, 0) scale(1);
           transform: translate3d(0, -10px, 0) scale(1);
@@ -196,14 +209,17 @@ body, html {
 }
 
 .carousel-container .gallery figure figcaption .additional {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat';  
+  text-align: left;   
 }
-<!-- 
 .carousel-container .gallery figure figcaption .additional p {
-  margin-bottom: 10px;
-  overflow: wrap;
+  margin-bottom: 10px; 
   font-size: 0.8em;  
-} -->
+  width: 100%; 
+  word-break: break-all;
+  white-space: normal;
+  
+}
 
 .carousel-container .gallery figure figcaption .additional a {
   display: inline-block;
@@ -257,7 +273,13 @@ body, html {
   -webkit-transform: rotateZ(-45deg) translate3d(0, 0, 0);
           transform: rotateZ(-45deg) translate3d(0, 0, 0);
 }
- 
+
+.current-video{
+  border-style: solid;
+  border-color: #77CDF1; 
+  opacity: .9;
+  transition: all 2000s; 
+}
 
 .turnDeviceNotification img {
   position: fixed;
@@ -270,7 +292,79 @@ body, html {
   display: none;
   z-index: 10000;
 }
- 
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin: 10% auto;
+  width: 60%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+}
+
+.modal-header {
+  background: var(--modal-color);
+  padding: 15px;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.modal-footer {
+  background: var(--modal-color);
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+  color: #fff;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 </style>
 </head>
 <body> 
@@ -371,6 +465,7 @@ body, html {
    
   
   <div class="controllers">
+    <button class="more-videos">Choose Playlist</button>
       <div class="control left-arrow"><img src="imgs/w.png" /></div> 
     <a href="#playing-video"><div class="control toggle"><img src="imgs/p2.png" /></div></a>
       <div class="control right-arrow"><img src="imgs/e.png" /></div> 
@@ -462,7 +557,7 @@ body, html {
     function findCurrentVideo(){ 
           //loops over each carousel item to see if it match current video being clicked.
          let currentVideo = 0;
-        const carouselItems = document.querySelectorAll('.video-carousel .video');
+        const carouselItems = document.querySelectorAll('.gallery .video');
           //Adds class to first div element generated from the loadVids() and youtube api
            carouselItems[currentVideo].classList.add("current-video");
           [...carouselItems].forEach((item, i) => { 
@@ -613,12 +708,12 @@ body, html {
             //  console.log(thumb); 
              let videoImg = document.querySelector('.video-carousel .video');
           
-             carousel.innerHTML +=`<figure id="${vid}">
-                                      <img src="${thumb}">
+             carousel.innerHTML +=`<figure id="${vid}" class="video">
+                                      <img src="${thumb}" >
                                         <figcaption>
                                           <h4>${title}</h4>
                                               <div class="additional">
-                                                  <a href="#">More Info</a>
+                                                    <p>${desc}</p>
                                               </div>
                                           </figcaption>
                                     </figure>
@@ -666,6 +761,35 @@ function changeOrientation() {
 
 window.addEventListener("load",  checkOrientation);
 window.addEventListener("orientationchange",  changeOrientation); 
+
+//MODAL
+// Get DOM Elements
+const modal = document.querySelector('#my-modal');
+const modalBtn = document.querySelector('#modal-btn');
+const closeBtn = document.querySelector('.close');
+
+// Events
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+// Open
+function openModal() {
+  modal.style.display = 'block';
+}
+
+// Close
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+// Close If Outside Click
+function outsideClick(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
   </script>
 </body>
 </html>
